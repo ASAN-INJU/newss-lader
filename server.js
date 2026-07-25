@@ -7,7 +7,14 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+require("dotenv").config();
 
+const express = require("express");
+const cors = require("cors");
+
+const {
+    fetchNews
+} = require("./news-fetcher");
 const app = express();
 
 
@@ -55,7 +62,72 @@ app.get("/api/test", (req, res) => {
 
 });
 
+// =======================================
+// 뉴스 검색 테스트 API
+// 사용 예:
+// /api/news?keyword=삼성전자
+// =======================================
 
+app.get(
+    "/api/news",
+    async (req, res) => {
+
+        try {
+
+            const keyword =
+                req.query.keyword;
+
+            if (!keyword) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "검색어를 입력해주세요."
+
+                });
+
+            }
+
+            console.log(
+                "NEWS REQUEST",
+                keyword
+            );
+
+
+            const result =
+                await fetchNews(
+                    keyword
+                );
+
+
+            res.json(
+                result
+            );
+
+
+        } catch (error) {
+
+            console.log(
+                "NEWS API ERROR",
+                error.message
+            );
+
+
+            res.status(500).json({
+
+                success: false,
+
+                message:
+                    error.message
+
+            });
+
+        }
+
+    }
+);
 // =======================================
 // 서버 시작
 // =======================================
