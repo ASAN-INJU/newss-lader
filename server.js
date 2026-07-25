@@ -7,14 +7,11 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
-
-const express = require("express");
-const cors = require("cors");
 
 const {
     fetchNews
 } = require("./news-fetcher");
+
 const app = express();
 
 
@@ -62,6 +59,7 @@ app.get("/api/test", (req, res) => {
 
 });
 
+
 // =======================================
 // 뉴스 검색 테스트 API
 // 사용 예:
@@ -89,6 +87,7 @@ app.get(
                 });
 
             }
+
 
             console.log(
                 "NEWS REQUEST",
@@ -128,6 +127,8 @@ app.get(
 
     }
 );
+
+
 // =======================================
 // 서버 시작
 // =======================================
