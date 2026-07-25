@@ -138,6 +138,196 @@ app.get(
       ↓
 뉴스레이더 결과
 // =======================================
+// 뉴스레이더
+// 뉴스 → 관련 종목 자동 검색
+// =======================================
+
+const stocks =
+    require("./stocks.json");
+
+
+// =======================================
+// 뉴스 제목에서 종목 찾기
+// =======================================
+
+function findRelatedStocks(news) {
+
+    const result = [];
+
+    for (
+        const stock of stocks
+    ) {
+
+        let matchedCount = 0;
+
+        for (
+            const item of news
+        ) {
+
+            const title =
+                item.title || "";
+
+            if (
+                title.includes(
+                    stock.name
+                )
+            ) {
+
+                matchedCount++;
+
+            }
+
+        }
+
+
+        if (
+            matchedCount > 0
+        ) {
+
+            result.push({
+
+                code:
+                    stock.code,
+
+                name:
+                    stock.name,
+
+                newsCount:
+                    matchedCount
+
+            });
+
+        }
+
+    }
+
+
+    // 뉴스가 많이 나온 종목부터 정렬
+
+    result.sort(
+
+        (a, b) =>
+
+            b.newsCount -
+            a.newsCount
+
+    );
+
+
+    return result.slice(
+        0,
+        5
+    );
+
+}
+
+
+// =======================================
+// 뉴스레이더 API
+//
+// 사용:
+// /api/radar?keyword=반도체
+// =======================================
+
+app.get(
+    "/api/radar",
+    async (req, res) => {
+
+        try {
+
+            const keyword =
+                req.query.keyword ||
+                "한국 주식";
+
+            console.log(
+                "RADAR REQUEST",
+                keyword
+            );
+
+
+            // 뉴스 수집
+
+            const newsResult =
+                await fetchNews(
+                    keyword
+                );
+
+
+            if (
+                !newsResult.success
+            ) {
+
+                return res.status(
+                    500
+                ).json({
+
+                    success:
+                        false,
+
+                    message:
+                        "뉴스 수집 실패"
+
+                });
+
+            }
+
+
+            // 관련 종목 찾기
+
+            const relatedStocks =
+                findRelatedStocks(
+                    newsResult.news
+                );
+
+
+            res.json({
+
+                success:
+                    true,
+
+                keyword:
+                    keyword,
+
+                news:
+                    newsResult.news.slice(
+                        0,
+                        5
+                    ),
+
+                relatedStocks:
+                    relatedStocks
+
+            });
+
+
+        } catch (error) {
+
+            console.log(
+
+                "RADAR ERROR",
+
+                error.message
+
+            );
+
+
+            res.status(
+                500
+            ).json({
+
+                success:
+                    false,
+
+                message:
+                    error.message
+
+            });
+
+        }
+
+    }
+);
+// =======================================
 // 서버 시작
 // =======================================
 app.listen(
