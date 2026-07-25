@@ -1,6 +1,6 @@
 // =======================================
 // newss-lader
-// 뉴스 수집 모듈
+// 실제 뉴스 수집 모듈
 // =======================================
 
 const axios = require("axios");
@@ -17,34 +17,88 @@ async function fetchNews(keyword) {
         const url =
             "https://search.naver.com/search.naver";
 
+
         const response =
-            await axios.get(url, {
+            await axios.get(
+                url,
+                {
 
-                params: {
+                    params: {
 
-                    where: "news",
+                        where: "news",
 
-                    query: keyword
+                        query: keyword
 
-                },
+                    },
 
-                headers: {
+                    headers: {
 
-                    "User-Agent":
-                        "Mozilla/5.0"
+                        "User-Agent":
+                            "Mozilla/5.0"
+
+                    },
+
+                    timeout:
+                        10000
 
                 }
+            );
+
+
+        const html =
+            response.data;
+
+
+        // -----------------------------------
+        // 뉴스 제목 추출
+        // -----------------------------------
+
+        const titleRegex =
+            /<a[^>]*class="[^"]*news_tit[^"]*"[^>]*title="([^"]*)"[^>]*href="([^"]*)"/g;
+
+
+        const news = [];
+
+
+        let match;
+
+
+        while (
+            (match =
+                titleRegex.exec(html)) !== null
+        ) {
+
+            news.push({
+
+                title:
+                    match[1],
+
+                link:
+                    match[2]
 
             });
 
 
-        // -----------------------------------
-        // 현재는 연결 테스트 단계
-        // -----------------------------------
+            // 최대 10개
+            if (
+                news.length >= 10
+            ) {
+
+                break;
+
+            }
+
+        }
+
 
         console.log(
+
             "NEWS FETCH SUCCESS",
-            keyword
+
+            keyword,
+
+            news.length
+
         );
 
 
@@ -52,10 +106,17 @@ async function fetchNews(keyword) {
 
             success: true,
 
-            keyword: keyword,
+            keyword:
 
-            message:
-                "뉴스 검색 연결 성공"
+                keyword,
+
+            count:
+
+                news.length,
+
+            news:
+
+                news
 
         };
 
@@ -75,9 +136,20 @@ async function fetchNews(keyword) {
 
             success: false,
 
-            keyword: keyword,
+            keyword:
+
+                keyword,
+
+            count:
+
+                0,
+
+            news:
+
+                [],
 
             message:
+
                 error.message
 
         };
