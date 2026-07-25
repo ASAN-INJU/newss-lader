@@ -1,21 +1,32 @@
 // =======================================
 // newss-lader
-// 실제 뉴스 수집 모듈
+// 뉴스 수집 모듈
+// RSS 기반 안정화 버전
 // =======================================
 
 const axios = require("axios");
 
 
 // =======================================
-// 네이버 뉴스 검색
+// 뉴스 수집
 // =======================================
 
 async function fetchNews(keyword) {
 
     try {
 
+        console.log(
+            "NEWS REQUEST",
+            keyword
+        );
+
+
+        // -----------------------------------
+        // 네이버 뉴스 RSS
+        // -----------------------------------
+
         const url =
-            "https://search.naver.com/search.naver";
+            "https://news.google.com/rss/search";
 
 
         const response =
@@ -25,9 +36,17 @@ async function fetchNews(keyword) {
 
                     params: {
 
-                        where: "news",
+                        q:
+                            keyword,
 
-                        query: keyword
+                        hl:
+                            "ko",
+
+                        gl:
+                            "KR",
+
+                        ceid:
+                            "KR:ko"
 
                     },
 
@@ -45,41 +64,108 @@ async function fetchNews(keyword) {
             );
 
 
-        const html =
+        const xml =
             response.data;
 
 
         // -----------------------------------
-        // 뉴스 제목 추출
+        // RSS item 추출
         // -----------------------------------
 
+        const itemRegex =
+            /<item>([\s\S]*?)<\/item>/g;
+
+
         const titleRegex =
-            /<a[^>]*class="[^"]*news_tit[^"]*"[^>]*title="([^"]*)"[^>]*href="([^"]*)"/g;
+            /<title><!\[CDATA\[(.*?)\]\]><\/title>|<title>(.*?)<\/title>/;
+
+
+        const linkRegex =
+            /<link>(.*?)<\/link>/;
+
+
+        const pubDateRegex =
+            /<pubDate>(.*?)<\/pubDate>/;
 
 
         const news = [];
 
 
-        let match;
+        let itemMatch;
 
 
         while (
-            (match =
-                titleRegex.exec(html)) !== null
+            (itemMatch =
+                itemRegex.exec(xml)) !== null
         ) {
 
-            news.push({
+            const item =
+                itemMatch[1];
 
-                title:
-                    match[1],
 
-                link:
-                    match[2]
+            const titleMatch =
+                item.match(
+                    titleRegex
+                );
 
-            });
+
+            const linkMatch =
+                item.match(
+                    linkRegex
+                );
+
+
+            const dateMatch =
+                item.match(
+                    pubDateRegex
+                );
+
+
+            const title =
+                titleMatch
+                    ? (
+                        titleMatch[1]
+                        ||
+                        titleMatch[2]
+                    )
+                    : "";
+
+
+            const link =
+                linkMatch
+                    ? linkMatch[1]
+                    : "";
+
+
+            const pubDate =
+                dateMatch
+                    ? dateMatch[1]
+                    : "";
+
+
+            if (
+                title &&
+                link
+            ) {
+
+                news.push({
+
+                    title:
+                        title.trim(),
+
+                    link:
+                        link.trim(),
+
+                    pubDate:
+                        pubDate.trim()
+
+                });
+
+            }
 
 
             // 최대 10개
+
             if (
                 news.length >= 10
             ) {
@@ -93,7 +179,7 @@ async function fetchNews(keyword) {
 
         console.log(
 
-            "NEWS FETCH SUCCESS",
+            "NEWS FETCH RESULT",
 
             keyword,
 
@@ -104,24 +190,23 @@ async function fetchNews(keyword) {
 
         return {
 
-            success: true,
+            success:
+                true,
 
             keyword:
-
                 keyword,
 
             count:
-
                 news.length,
 
             news:
-
                 news
 
         };
 
 
     } catch (error) {
+
 
         console.log(
 
@@ -134,22 +219,19 @@ async function fetchNews(keyword) {
 
         return {
 
-            success: false,
+            success:
+                false,
 
             keyword:
-
                 keyword,
 
             count:
-
                 0,
 
             news:
-
                 [],
 
             message:
-
                 error.message
 
         };
