@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
 
 <meta name="theme-color" content="#0f172a">
 
-<title>수요일 전시대 봉사 계획</title>
+<title>수요일 전시대 봉사</title>
+
 
 <style>
+
+/* ================================
+   기본
+================================ */
 
 *{
     box-sizing:border-box;
 }
 
 body{
+
     margin:0;
+
     font-family:
         "Noto Sans KR",
         "Apple SD Gothic Neo",
@@ -25,26 +36,35 @@ body{
 
     background:
         linear-gradient(
-            135deg,
-            #eef2f7 0%,
-            #f8fafc 50%,
-            #e8edf4 100%
+            145deg,
+            #eef2f7,
+            #f8fafc
         );
 
     color:#172033;
-    min-height:100vh;
+
+    -webkit-font-smoothing:antialiased;
+
 }
 
 
 /* ================================
-   전체 컨테이너
+   전체
 ================================ */
 
 .container{
+
     width:100%;
-    max-width:900px;
-    margin:0 auto;
-    padding:18px 14px 40px;
+
+    max-width:600px;
+
+    margin:auto;
+
+    padding:
+        10px
+        10px
+        35px;
+
 }
 
 
@@ -53,6 +73,7 @@ body{
 ================================ */
 
 .header{
+
     background:
         linear-gradient(
             135deg,
@@ -62,62 +83,60 @@ body{
 
     color:white;
 
-    border-radius:24px;
+    border-radius:22px;
 
-    padding:28px 22px;
+    padding:
+        22px
+        18px;
 
     box-shadow:
-        0 15px 35px rgba(15,23,42,.18);
+        0 12px 30px
+        rgba(15,23,42,.18);
 
-    position:relative;
-    overflow:hidden;
 }
 
-.header::after{
-    content:"";
-    position:absolute;
 
-    width:180px;
-    height:180px;
+.header-small{
 
-    right:-70px;
-    top:-70px;
+    font-size:11px;
 
-    border-radius:50%;
-
-    background:
-        rgba(255,255,255,.05);
-}
-
-.header-top{
-    position:relative;
-    z-index:2;
-}
-
-.small-title{
-    font-size:13px;
     letter-spacing:2px;
+
     color:#d4af61;
-    font-weight:700;
-    margin-bottom:8px;
+
+    font-weight:800;
+
+    margin-bottom:7px;
+
 }
 
-h1{
+
+.header h1{
+
     margin:0;
-    font-size:25px;
-    font-weight:800;
+
+    font-size:23px;
+
     letter-spacing:-1px;
+
 }
+
 
 .header-info{
-    margin-top:18px;
 
     display:flex;
+
     flex-wrap:wrap;
-    gap:8px;
+
+    gap:7px;
+
+    margin-top:15px;
+
 }
 
-.info-badge{
+
+.badge{
+
     background:
         rgba(255,255,255,.1);
 
@@ -125,13 +144,14 @@ h1{
         1px solid
         rgba(255,255,255,.12);
 
-    padding:8px 12px;
-
     border-radius:30px;
 
-    font-size:13px;
+    padding:
+        7px
+        10px;
 
-    backdrop-filter:blur(5px);
+    font-size:12px;
+
 }
 
 
@@ -140,62 +160,79 @@ h1{
 ================================ */
 
 .date-box{
-    margin-top:14px;
+
+    margin-top:10px;
 
     background:white;
 
-    border-radius:18px;
+    border-radius:16px;
 
-    padding:16px 18px;
-
-    box-shadow:
-        0 8px 22px rgba(15,23,42,.07);
+    padding:
+        13px
+        16px;
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 
-    gap:10px;
+    box-shadow:
+        0 5px 18px
+        rgba(15,23,42,.06);
+
 }
 
-.date-label{
-    font-size:12px;
+
+.date-title{
+
+    font-size:11px;
+
     color:#64748b;
+
 }
+
 
 .date-value{
-    font-size:16px;
+
+    font-size:15px;
+
     font-weight:800;
-    color:#0f172a;
+
+    margin-top:2px;
+
 }
 
 
 /* ================================
-   섹션
+   카드
 ================================ */
 
-.section{
-    margin-top:18px;
+.card{
 
     background:white;
 
-    border-radius:22px;
+    border-radius:20px;
 
-    padding:20px;
+    margin-top:10px;
+
+    padding:17px;
 
     box-shadow:
-        0 8px 25px rgba(15,23,42,.06);
+        0 6px 20px
+        rgba(15,23,42,.06);
+
 }
 
-.section-title{
-    font-size:17px;
-    font-weight:800;
 
-    margin-bottom:16px;
+.card-title{
 
-    display:flex;
-    align-items:center;
-    gap:8px;
+    font-size:16px;
+
+    font-weight:900;
+
+    margin-bottom:14px;
+
 }
 
 
@@ -203,204 +240,254 @@ h1{
    조 편성
 ================================ */
 
-.team-grid{
-    display:grid;
+.team{
 
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:12px;
-}
-
-.team-card{
     border:
         1px solid
-        #e2e8f0;
+        #e5e7eb;
 
-    border-radius:18px;
+    border-radius:15px;
 
-    padding:16px;
+    padding:12px;
 
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f8fafc
-        );
+    margin-bottom:9px;
 
-    transition:.2s;
 }
 
-.team-card:hover{
-    transform:translateY(-2px);
 
-    box-shadow:
-        0 8px 20px
-        rgba(15,23,42,.08);
+.team:last-child{
+
+    margin-bottom:0;
+
 }
 
-.team-header{
+
+.team-top{
+
     display:flex;
 
     justify-content:space-between;
 
     align-items:center;
 
-    margin-bottom:12px;
+    margin-bottom:8px;
+
 }
+
 
 .team-name{
-    font-weight:800;
-    font-size:16px;
+
+    font-weight:900;
+
+    font-size:14px;
+
 }
 
+
 .team-place{
-    font-size:12px;
+
+    font-size:11px;
 
     color:#64748b;
 
-    margin-top:3px;
+    margin-top:2px;
+
 }
 
+
 .team-number{
-    width:34px;
-    height:34px;
+
+    width:31px;
+
+    height:31px;
 
     border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
 
     background:#0f172a;
 
     color:white;
 
-    font-weight:800;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:900;
+
 }
 
+
+.inputs{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:7px;
+
+}
+
+
 input{
+
     width:100%;
 
-    padding:12px 13px;
-
-    margin-top:8px;
+    min-width:0;
 
     border:
         1px solid
         #dbe2ea;
 
-    border-radius:12px;
+    border-radius:10px;
+
+    padding:
+        10px;
+
+    font-size:13px;
 
     outline:none;
 
-    font-size:14px;
-
     background:#f8fafc;
 
-    transition:.2s;
 }
 
+
 input:focus{
-    border-color:#d4af61;
 
     background:white;
 
+    border-color:#c29b4b;
+
     box-shadow:
         0 0 0 3px
-        rgba(212,175,97,.13);
+        rgba(194,155,75,.12);
+
 }
 
 
 /* ================================
-   순환 구조
+   순환
 ================================ */
 
 .flow{
+
     display:flex;
 
     flex-direction:column;
 
     align-items:center;
 
-    gap:8px;
 }
 
-.flow-row{
+
+.flow-item{
+
+    width:100%;
+
     display:flex;
 
     align-items:center;
 
     justify-content:center;
 
-    gap:7px;
+    gap:9px;
 
-    width:100%;
 }
 
-.flow-circle{
-    width:58px;
-    height:58px;
 
-    flex-shrink:0;
+.circle{
+
+    width:48px;
+
+    height:48px;
 
     border-radius:50%;
 
-    display:flex;
+    color:white;
 
-    align-items:center;
+    display:flex;
 
     justify-content:center;
 
+    align-items:center;
+
     font-weight:900;
 
-    color:white;
+    flex-shrink:0;
 
-    box-shadow:
-        0 7px 15px
-        rgba(15,23,42,.15);
 }
 
-.c1{
+
+.one{
+
     background:#1d4ed8;
+
 }
 
-.c2{
+
+.two{
+
     background:#0f766e;
+
 }
 
-.c3{
+
+.three{
+
     background:#b45309;
+
 }
 
-.c4{
+
+.four{
+
     background:#64748b;
+
 }
 
-.flow-text{
-    font-size:12px;
 
-    font-weight:700;
+.flow-name{
 
-    text-align:center;
-}
-
-.arrow{
-    font-size:22px;
-
-    color:#d4af61;
-
-    font-weight:900;
-}
-
-.return-arrow{
-    margin-top:5px;
-
-    color:#b08a3c;
+    font-size:13px;
 
     font-weight:800;
 
-    font-size:13px;
+    min-width:125px;
+
+}
+
+
+.flow-arrow{
+
+    font-size:22px;
+
+    color:#c29b4b;
+
+    font-weight:900;
+
+    margin:2px 0;
+
+}
+
+
+.return{
+
+    margin-top:8px;
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    background:#f8fafc;
+
+    color:#8a6a2d;
+
+    font-size:12px;
+
+    font-weight:800;
+
 }
 
 
@@ -409,149 +496,156 @@ input:focus{
 ================================ */
 
 .schedule{
+
     display:flex;
 
     flex-direction:column;
 
-    gap:8px;
+    gap:6px;
+
 }
 
+
 .schedule-row{
+
     display:grid;
 
     grid-template-columns:
-        110px 1fr;
+        105px 1fr;
 
     align-items:center;
 
-    min-height:58px;
+    min-height:45px;
 
-    padding:8px 12px;
-
-    border-radius:14px;
+    padding:
+        7px
+        10px;
 
     background:#f8fafc;
 
-    border:
-        1px solid
-        #edf1f5;
+    border-radius:11px;
+
 }
 
-.schedule-time{
-    font-weight:800;
 
-    font-size:14px;
+.time{
 
-    color:#0f172a;
+    font-size:12px;
+
+    font-weight:900;
+
 }
 
-.schedule-place{
-    display:flex;
 
-    align-items:center;
+.place{
 
-    gap:9px;
-
-    font-size:13px;
+    font-size:12px;
 
     font-weight:700;
+
 }
 
-.dot{
-    width:10px;
-    height:10px;
 
-    border-radius:50%;
+.current{
 
-    flex-shrink:0;
+    background:#fff8e7;
+
+    border:
+        1px solid
+        #e5c878;
+
 }
-
-.dot1{background:#1d4ed8;}
-.dot2{background:#0f766e;}
-.dot3{background:#b45309;}
-.dot4{background:#64748b;}
 
 
 /* ================================
    버튼
 ================================ */
 
-.button-area{
-    display:flex;
+.buttons{
 
-    gap:10px;
+    display:grid;
 
-    margin-top:18px;
-}
+    grid-template-columns:
+        1fr 1fr;
 
-button{
-    flex:1;
-
-    border:0;
-
-    padding:14px;
-
-    border-radius:14px;
-
-    font-size:14px;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.save-btn{
-    background:#0f172a;
-    color:white;
-}
-
-.save-btn:hover{
-    background:#1e293b;
-}
-
-.reset-btn{
-    background:#f1f5f9;
-    color:#475569;
-}
-
-.reset-btn:hover{
-    background:#e2e8f0;
-}
-
-
-/* ================================
-   저장 상태
-================================ */
-
-.status{
-    text-align:center;
-
-    font-size:12px;
-
-    color:#64748b;
+    gap:8px;
 
     margin-top:12px;
 
-    min-height:18px;
 }
 
 
-/* ================================
-   푸터
-================================ */
+button{
 
-.footer{
+    border:0;
+
+    border-radius:12px;
+
+    padding:13px 8px;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+}
+
+
+.save{
+
+    background:#0f172a;
+
+    color:white;
+
+}
+
+
+.copy{
+
+    background:#d4af61;
+
+    color:#172033;
+
+}
+
+
+.share{
+
+    background:#2563eb;
+
+    color:white;
+
+    grid-column:
+        span 2;
+
+}
+
+
+.reset{
+
+    background:#f1f5f9;
+
+    color:#64748b;
+
+    grid-column:
+        span 2;
+
+}
+
+
+.status{
+
     text-align:center;
 
-    color:#94a3b8;
+    color:#64748b;
 
     font-size:11px;
 
-    margin-top:22px;
+    margin-top:9px;
 
-    line-height:1.6;
+    min-height:17px;
+
 }
 
 
@@ -559,60 +653,62 @@ button{
    모바일
 ================================ */
 
-@media(max-width:600px){
+@media(max-width:380px){
 
     .container{
+
         padding:
-            10px
-            10px
-            30px;
+            7px
+            7px
+            25px;
+
     }
+
 
     .header{
-        border-radius:20px;
 
         padding:
-            24px 18px;
+            19px
+            15px;
+
     }
 
-    h1{
-        font-size:22px;
+
+    .header h1{
+
+        font-size:21px;
+
     }
 
-    .team-grid{
-        grid-template-columns:
-            1fr;
+
+    .card{
+
+        padding:
+            14px;
+
     }
 
-    .section{
-        padding:16px;
-
-        border-radius:18px;
-    }
 
     .schedule-row{
+
         grid-template-columns:
-            100px 1fr;
+            95px 1fr;
+
     }
 
-    .schedule-time{
-        font-size:12px;
-    }
 
-    .schedule-place{
-        font-size:12px;
-    }
+    .time,
+    .place{
 
-    .flow-circle{
-        width:52px;
-        height:52px;
+        font-size:11px;
 
-        font-size:13px;
     }
 
 }
 
+
 </style>
+
 </head>
 
 
@@ -626,335 +722,330 @@ button{
      HEADER
 ================================ -->
 
-<header class="header">
+<div class="header">
 
-    <div class="header-top">
-
-        <div class="small-title">
-            WEDNESDAY MINISTRY
-        </div>
-
-        <h1>
-            수요일 전시대 봉사
-        </h1>
-
-        <div class="header-info">
-
-            <div class="info-badge">
-                📍 영인면사무소
-            </div>
-
-            <div class="info-badge">
-                🕕 오후 6:00 ~ 8:00
-            </div>
-
-            <div class="info-badge">
-                👥 2인 1조 · 4개 조
-            </div>
-
-        </div>
-
+    <div class="header-small">
+        WEDNESDAY MINISTRY
     </div>
 
-</header>
+    <h1>
+        수요일 전시대 봉사
+    </h1>
 
 
-<!-- ================================
-     DATE
-================================ -->
+    <div class="header-info">
 
-<div class="date-box">
-
-    <div>
-
-        <div class="date-label">
-            이번 수요일
+        <div class="badge">
+            📍 영인면사무소
         </div>
 
-        <div
-            class="date-value"
-            id="nextWednesday">
+        <div class="badge">
+            🕕 6:00 ~ 8:00
         </div>
 
-    </div>
+        <div class="badge">
+            👥 4개 조
+        </div>
 
-    <div>
-        📅
     </div>
 
 </div>
 
 
+
+<!-- 날짜 -->
+
+<div class="date-box">
+
+    <div>
+
+        <div class="date-title">
+            이번 봉사
+        </div>
+
+        <div
+            id="nextWednesday"
+            class="date-value">
+        </div>
+
+    </div>
+
+    📅
+
+</div>
+
+
+
 <!-- ================================
-     TEAM
+     조 편성
 ================================ -->
 
-<section class="section">
+<div class="card">
 
-    <div class="section-title">
+    <div class="card-title">
         👥 조별 봉사자
     </div>
 
 
-    <div class="team-grid">
+    <div class="team">
 
+        <div class="team-top">
 
-        <!-- TEAM 1 -->
+            <div>
 
-        <div class="team-card">
-
-            <div class="team-header">
-
-                <div>
-
-                    <div class="team-name">
-                        1조 · 전시대
-                    </div>
-
-                    <div class="team-place">
-                        전시대 담당
-                    </div>
-
+                <div class="team-name">
+                    ① 전시대
                 </div>
 
-                <div class="team-number">
-                    1
+                <div class="team-place">
+                    전시대 담당
                 </div>
 
             </div>
 
+            <div class="team-number">
+                1
+            </div>
+
+        </div>
+
+
+        <div class="inputs">
 
             <input
                 id="team1a"
-                type="text"
                 placeholder="봉사자 이름">
 
             <input
                 id="team1b"
-                type="text"
                 placeholder="봉사자 이름">
 
         </div>
 
+    </div>
 
 
-        <!-- TEAM 2 -->
 
-        <div class="team-card">
+    <div class="team">
 
-            <div class="team-header">
+        <div class="team-top">
 
-                <div>
+            <div>
 
-                    <div class="team-name">
-                        2조 · 만득이 정류장
-                    </div>
-
-                    <div class="team-place">
-                        정류장 담당
-                    </div>
-
+                <div class="team-name">
+                    ② 만득이 정류장
                 </div>
 
-                <div class="team-number">
-                    2
+                <div class="team-place">
+                    정류장 담당
                 </div>
 
             </div>
 
+            <div class="team-number">
+                2
+            </div>
+
+        </div>
+
+
+        <div class="inputs">
 
             <input
                 id="team2a"
-                type="text"
                 placeholder="봉사자 이름">
 
             <input
                 id="team2b"
-                type="text"
                 placeholder="봉사자 이름">
 
         </div>
 
+    </div>
 
 
-        <!-- TEAM 3 -->
 
-        <div class="team-card">
+    <div class="team">
 
-            <div class="team-header">
+        <div class="team-top">
 
-                <div>
+            <div>
 
-                    <div class="team-name">
-                        3조 · 면사무소 건너편
-                    </div>
-
-                    <div class="team-place">
-                        정류장 담당
-                    </div>
-
+                <div class="team-name">
+                    ③ 면사무소 건너편 정류장
                 </div>
 
-                <div class="team-number">
-                    3
+                <div class="team-place">
+                    정류장 담당
                 </div>
 
             </div>
 
+            <div class="team-number">
+                3
+            </div>
+
+        </div>
+
+
+        <div class="inputs">
 
             <input
                 id="team3a"
-                type="text"
                 placeholder="봉사자 이름">
 
             <input
                 id="team3b"
-                type="text"
                 placeholder="봉사자 이름">
 
         </div>
 
+    </div>
 
 
-        <!-- TEAM 4 -->
 
-        <div class="team-card">
+    <div class="team">
 
-            <div class="team-header">
+        <div class="team-top">
 
-                <div>
+            <div>
 
-                    <div class="team-name">
-                        4조 · 대기조
-                    </div>
-
-                    <div class="team-place">
-                        전시대로 이동
-                    </div>
-
+                <div class="team-name">
+                    ④ 대기조
                 </div>
 
-                <div class="team-number">
-                    4
+                <div class="team-place">
+                    다음 순환은 전시대
                 </div>
 
             </div>
 
-
-            <input
-                id="team4a"
-                type="text"
-                placeholder="봉사자 이름">
-
-            <input
-                id="team4b"
-                type="text"
-                placeholder="봉사자 이름">
+            <div class="team-number">
+                4
+            </div>
 
         </div>
 
 
+        <div class="inputs">
+
+            <input
+                id="team4a"
+                placeholder="봉사자 이름">
+
+            <input
+                id="team4b"
+                placeholder="봉사자 이름">
+
+        </div>
+
     </div>
 
-</section>
+
+</div>
 
 
 
 <!-- ================================
-     FLOW
+     순환 구조
 ================================ -->
 
-<section class="section">
+<div class="card">
 
-    <div class="section-title">
-        🔄 15분 순환 구조
+    <div class="card-title">
+        🔄 15분 순환
     </div>
 
 
     <div class="flow">
 
 
-        <div class="flow-row">
+        <div class="flow-item">
 
-            <div class="flow-circle c1">
+            <div class="circle one">
                 ①
             </div>
 
-            <div class="flow-text">
+            <div class="flow-name">
                 전시대
-            </div>
-
-            <div class="arrow">
-                →
-            </div>
-
-
-            <div class="flow-circle c2">
-                ②
-            </div>
-
-            <div class="flow-text">
-                만득이<br>
-                정류장
             </div>
 
         </div>
 
 
+        <div class="flow-arrow">
+            ↓
+        </div>
 
-        <div class="flow-row">
 
-            <div class="flow-circle c2">
+        <div class="flow-item">
+
+            <div class="circle two">
                 ②
             </div>
 
-            <div class="arrow">
-                ↓
+            <div class="flow-name">
+                만득이 정류장
             </div>
 
-            <div class="flow-circle c3">
+        </div>
+
+
+        <div class="flow-arrow">
+            ↓
+        </div>
+
+
+        <div class="flow-item">
+
+            <div class="circle three">
                 ③
             </div>
 
-            <div class="flow-text">
-                면사무소<br>
-                건너편
+            <div class="flow-name">
+                면사무소 건너편 정류장
             </div>
 
-            <div class="arrow">
-                ↓
-            </div>
+        </div>
 
-            <div class="flow-circle c4">
+
+        <div class="flow-arrow">
+            ↓
+        </div>
+
+
+        <div class="flow-item">
+
+            <div class="circle four">
                 ④
             </div>
 
-            <div class="flow-text">
+            <div class="flow-name">
                 대기조
             </div>
 
         </div>
 
 
-        <div class="return-arrow">
-            ↖ ④ 대기조 → ① 전시대로 이동
+        <div class="return">
+            ↖ ④ 대기조 → ① 전시대
         </div>
 
 
     </div>
 
-</section>
+</div>
 
 
 
 <!-- ================================
-     SCHEDULE
+     시간표
 ================================ -->
 
-<section class="section">
+<div class="card">
 
-    <div class="section-title">
-        🕕 15분 단위 순환 일정
+    <div class="card-title">
+        🕕 15분 단위 봉사 일정
     </div>
 
 
@@ -963,12 +1054,11 @@ button{
 
         <div class="schedule-row">
 
-            <div class="schedule-time">
+            <div class="time">
                 6:00 ~ 6:15
             </div>
 
-            <div class="schedule-place">
-                <span class="dot dot1"></span>
+            <div class="place">
                 ① 전시대
             </div>
 
@@ -977,12 +1067,11 @@ button{
 
         <div class="schedule-row">
 
-            <div class="schedule-time">
+            <div class="time">
                 6:15 ~ 6:30
             </div>
 
-            <div class="schedule-place">
-                <span class="dot dot2"></span>
+            <div class="place">
                 ② 만득이 정류장
             </div>
 
@@ -991,13 +1080,12 @@ button{
 
         <div class="schedule-row">
 
-            <div class="schedule-time">
+            <div class="time">
                 6:30 ~ 6:45
             </div>
 
-            <div class="schedule-place">
-                <span class="dot dot3"></span>
-                ③ 면사무소 건너편 정류장
+            <div class="place">
+                ③ 면사무소 건너편
             </div>
 
         </div>
@@ -1005,12 +1093,11 @@ button{
 
         <div class="schedule-row">
 
-            <div class="schedule-time">
+            <div class="time">
                 6:45 ~ 7:00
             </div>
 
-            <div class="schedule-place">
-                <span class="dot dot4"></span>
+            <div class="place">
                 ④ 대기조
             </div>
 
@@ -1019,12 +1106,11 @@ button{
 
         <div class="schedule-row">
 
-            <div class="schedule-time">
+            <div class="time">
                 7:00 ~ 7:15
             </div>
 
-            <div class="schedule-place">
-                <span class="dot dot1"></span>
+            <div class="place">
                 ① 전시대
             </div>
 
@@ -1033,12 +1119,11 @@ button{
 
         <div class="schedule-row">
 
-            <div class="schedule-time">
+            <div class="time">
                 7:15 ~ 7:30
             </div>
 
-            <div class="schedule-place">
-                <span class="dot dot2"></span>
+            <div class="place">
                 ② 만득이 정류장
             </div>
 
@@ -1047,13 +1132,12 @@ button{
 
         <div class="schedule-row">
 
-            <div class="schedule-time">
+            <div class="time">
                 7:30 ~ 7:45
             </div>
 
-            <div class="schedule-place">
-                <span class="dot dot3"></span>
-                ③ 면사무소 건너편 정류장
+            <div class="place">
+                ③ 면사무소 건너편
             </div>
 
         </div>
@@ -1061,12 +1145,11 @@ button{
 
         <div class="schedule-row">
 
-            <div class="schedule-time">
+            <div class="time">
                 7:45 ~ 8:00
             </div>
 
-            <div class="schedule-place">
-                <span class="dot dot4"></span>
+            <div class="place">
                 ④ 대기조 → ① 전시대
             </div>
 
@@ -1076,10 +1159,14 @@ button{
     </div>
 
 
-    <div class="button-area">
+
+    <!-- 버튼 -->
+
+    <div class="buttons">
+
 
         <button
-            class="save-btn"
+            class="save"
             onclick="saveData()">
 
             💾 저장
@@ -1088,32 +1175,48 @@ button{
 
 
         <button
-            class="reset-btn"
-            onclick="resetData()">
+            class="copy"
+            onclick="copyKakao()">
 
-            ↺ 초기화
+            📋 카톡용 복사
 
         </button>
+
+
+        <button
+            class="share"
+            onclick="shareKakao()">
+
+            📤 카톡으로 공유하기
+
+        </button>
+
+
+        <button
+            class="reset"
+            onclick="resetData()">
+
+            ↺ 이름 초기화
+
+        </button>
+
 
     </div>
 
 
     <div
-        class="status"
-        id="status">
+        id="status"
+        class="status">
     </div>
 
-</section>
+
+</div>
 
 
 
-<div class="footer">
+<div class="status">
 
-    수요일 전시대 봉사 계획 관리
-
-    <br>
-
-    봉사자 이름은 이 기기에 자동 저장됩니다.
+    봉사자 이름은 이 휴대폰에 자동 저장됩니다.
 
 </div>
 
@@ -1125,9 +1228,31 @@ button{
 <script>
 
 
-/* =================================
-   다음 수요일 날짜
-================================= */
+/* ================================
+   ID 목록
+================================ */
+
+const ids = [
+
+    "team1a",
+    "team1b",
+
+    "team2a",
+    "team2b",
+
+    "team3a",
+    "team3b",
+
+    "team4a",
+    "team4b"
+
+];
+
+
+
+/* ================================
+   다음 수요일
+================================ */
 
 function getNextWednesday(){
 
@@ -1150,17 +1275,21 @@ function getNextWednesday(){
         new Date(today);
 
     date.setDate(
-        today.getDate() + diff
+
+        today.getDate()
+        +
+        diff
+
     );
 
 
-    const year =
+    const y =
         date.getFullYear();
 
-    const month =
-        date.getMonth() + 1;
+    const m =
+        date.getMonth()+1;
 
-    const dayNumber =
+    const d =
         date.getDate();
 
 
@@ -1169,33 +1298,18 @@ function getNextWednesday(){
             "nextWednesday"
         )
         .textContent =
-        `${year}년 ${month}월 ${dayNumber}일 수요일`;
+
+        `${y}년 ${m}월 ${d}일 수요일`;
 
 }
 
 
-/* =================================
+
+/* ================================
    저장
-================================= */
+================================ */
 
 function saveData(){
-
-    const ids = [
-
-        "team1a",
-        "team1b",
-
-        "team2a",
-        "team2b",
-
-        "team3a",
-        "team3b",
-
-        "team4a",
-        "team4b"
-
-    ];
-
 
     ids.forEach(id => {
 
@@ -1212,48 +1326,19 @@ function saveData(){
     });
 
 
-    const status =
-        document
-            .getElementById(
-                "status"
-            );
-
-
-    status.textContent =
-        "✓ 봉사자 이름이 저장되었습니다.";
-
-
-    setTimeout(() => {
-
-        status.textContent = "";
-
-    },3000);
+    showStatus(
+        "✓ 봉사자 이름이 저장되었습니다."
+    );
 
 }
 
 
-/* =================================
+
+/* ================================
    불러오기
-================================= */
+================================ */
 
 function loadData(){
-
-    const ids = [
-
-        "team1a",
-        "team1b",
-
-        "team2a",
-        "team2b",
-
-        "team3a",
-        "team3b",
-
-        "team4a",
-        "team4b"
-
-    ];
-
 
     ids.forEach(id => {
 
@@ -1275,66 +1360,288 @@ function loadData(){
 }
 
 
-/* =================================
-   초기화
-================================= */
 
-function resetData(){
+/* ================================
+   카톡용 텍스트 생성
+================================ */
 
-    const answer =
-        confirm(
-            "모든 봉사자 이름을 삭제할까요?"
+function makeKakaoText(){
+
+    const get =
+        id =>
+
+        document
+            .getElementById(id)
+            .value
+            .trim()
+            ||
+            "미정";
+
+
+    const date =
+        document
+            .getElementById(
+                "nextWednesday"
+            )
+            .textContent;
+
+
+    return `🟦 수요일 전시대 봉사 계획
+
+📅 ${date}
+
+📍 장소: 영인면사무소
+🕕 시간: 오후 6:00 ~ 8:00
+
+👥 조 편성
+
+① 전시대
+   ${get("team1a")} / ${get("team1b")}
+
+② 만득이 정류장
+   ${get("team2a")} / ${get("team2b")}
+
+③ 면사무소 건너편 정류장
+   ${get("team3a")} / ${get("team3b")}
+
+④ 대기조
+   ${get("team4a")} / ${get("team4b")}
+
+🔄 15분 순환 일정
+
+6:00 ~ 6:15  ① 전시대
+6:15 ~ 6:30  ② 만득이 정류장
+6:30 ~ 6:45  ③ 면사무소 건너편 정류장
+6:45 ~ 7:00  ④ 대기조
+
+7:00 ~ 7:15  ① 전시대
+7:15 ~ 7:30  ② 만득이 정류장
+7:30 ~ 7:45  ③ 면사무소 건너편 정류장
+7:45 ~ 8:00  ④ 대기조 → ① 전시대`;
+
+}
+
+
+
+/* ================================
+   카톡용 복사
+================================ */
+
+async function copyKakao(){
+
+    const text =
+        makeKakaoText();
+
+
+    try{
+
+        await navigator
+            .clipboard
+            .writeText(text);
+
+
+        showStatus(
+            "✓ 카톡용 내용이 복사되었습니다. 카톡에 붙여넣으세요."
         );
 
 
-    if(!answer){
+    }catch(error){
+
+        const textarea =
+            document
+                .createElement(
+                    "textarea"
+                );
+
+
+        textarea.value =
+            text;
+
+
+        document
+            .body
+            .appendChild(
+                textarea
+            );
+
+
+        textarea
+            .select();
+
+
+        document
+            .execCommand(
+                "copy"
+            );
+
+
+        textarea
+            .remove();
+
+
+        showStatus(
+            "✓ 복사되었습니다. 카톡에 붙여넣으세요."
+        );
+
+    }
+
+}
+
+
+
+/* ================================
+   휴대폰 공유
+================================ */
+
+async function shareKakao(){
+
+    const text =
+        makeKakaoText();
+
+
+    if(
+        navigator.share
+    ){
+
+        try{
+
+            await navigator.share({
+
+                title:
+                    "수요일 전시대 봉사 계획",
+
+                text:
+                    text
+
+            });
+
+
+        }catch(error){
+
+            // 사용자가 공유창을 닫은 경우
+
+        }
+
+    }else{
+
+        await copyKakao();
+
+        alert(
+            "공유 기능을 지원하지 않는 환경입니다.\n\n내용을 복사했습니다.\n카카오톡에 붙여넣어 주세요."
+        );
+
+    }
+
+}
+
+
+
+/* ================================
+   초기화
+================================ */
+
+function resetData(){
+
+    if(
+        !confirm(
+            "봉사자 이름을 모두 삭제할까요?"
+        )
+    ){
 
         return;
 
     }
 
 
-    const ids = [
-
-        "team1a",
-        "team1b",
-
-        "team2a",
-        "team2b",
-
-        "team3a",
-        "team3b",
-
-        "team4a",
-        "team4b"
-
-    ];
-
-
     ids.forEach(id => {
 
-        localStorage.removeItem(id);
+        localStorage
+            .removeItem(id);
+
 
         document
             .getElementById(id)
-            .value = "";
+            .value =
+            "";
 
     });
 
 
-    document
-        .getElementById(
-            "status"
-        )
-        .textContent =
-        "✓ 모든 이름이 삭제되었습니다.";
+    showStatus(
+        "✓ 봉사자 이름을 모두 삭제했습니다."
+    );
 
 }
 
 
-/* =================================
+
+/* ================================
+   상태 메시지
+================================ */
+
+function showStatus(message){
+
+    const status =
+        document
+            .getElementById(
+                "status"
+            );
+
+
+    status.textContent =
+        message;
+
+
+    setTimeout(
+
+        () => {
+
+            status.textContent =
+                "";
+
+        },
+
+        3500
+
+    );
+
+}
+
+
+
+/* ================================
+   자동 저장
+================================ */
+
+ids.forEach(id => {
+
+    document
+        .getElementById(id)
+        .addEventListener(
+
+            "input",
+
+            function(){
+
+                localStorage.setItem(
+
+                    id,
+
+                    this.value
+
+                );
+
+            }
+
+        );
+
+});
+
+
+
+/* ================================
    시작
-================================= */
+================================ */
 
 document.addEventListener(
 
@@ -1349,6 +1656,7 @@ document.addEventListener(
     }
 
 );
+
 
 </script>
 
