@@ -1,1665 +1,511 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
->
-
-<meta name="theme-color" content="#0f172a">
-
-<title>수요일 전시대 봉사</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>60일 영화영어 + 팝송</title>
 
 <style>
-
-/* ================================
-   기본
-================================ */
-
-*{
-    box-sizing:border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-
-    margin:0;
-
-    font-family:
-        "Noto Sans KR",
-        "Apple SD Gothic Neo",
-        Arial,
-        sans-serif;
-
-    background:
-        linear-gradient(
-            145deg,
-            #eef2f7,
-            #f8fafc
-        );
-
-    color:#172033;
-
-    -webkit-font-smoothing:antialiased;
-
+body {
+  margin: 0;
+  background: #f5f6f8;
+  color: #222;
+  font-family: Arial, "Noto Sans KR", sans-serif;
+  font-size: 12pt;
 }
 
-
-/* ================================
-   전체
-================================ */
-
-.container{
-
-    width:100%;
-
-    max-width:600px;
-
-    margin:auto;
-
-    padding:
-        10px
-        10px
-        35px;
-
+.app {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  min-height: 100vh;
 }
 
-
-/* ================================
-   헤더
-================================ */
-
-.header{
-
-    background:
-        linear-gradient(
-            135deg,
-            #0f172a,
-            #1e293b
-        );
-
-    color:white;
-
-    border-radius:22px;
-
-    padding:
-        22px
-        18px;
-
-    box-shadow:
-        0 12px 30px
-        rgba(15,23,42,.18);
-
+header {
+  background: #222;
+  color: white;
+  padding: 18px 16px;
 }
 
-
-.header-small{
-
-    font-size:11px;
-
-    letter-spacing:2px;
-
-    color:#d4af61;
-
-    font-weight:800;
-
-    margin-bottom:7px;
-
+header h1 {
+  margin: 0 0 8px;
+  font-size: 14pt;
 }
 
-
-.header h1{
-
-    margin:0;
-
-    font-size:23px;
-
-    letter-spacing:-1px;
-
+.progress {
+  font-size: 12pt;
 }
 
-
-.header-info{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:7px;
-
-    margin-top:15px;
-
+.container {
+  padding: 15px;
 }
 
-
-.badge{
-
-    background:
-        rgba(255,255,255,.1);
-
-    border:
-        1px solid
-        rgba(255,255,255,.12);
-
-    border-radius:30px;
-
-    padding:
-        7px
-        10px;
-
-    font-size:12px;
-
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
 }
 
-
-/* ================================
-   날짜
-================================ */
-
-.date-box{
-
-    margin-top:10px;
-
-    background:white;
-
-    border-radius:16px;
-
-    padding:
-        13px
-        16px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    box-shadow:
-        0 5px 18px
-        rgba(15,23,42,.06);
-
+.section-title {
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 12px;
 }
 
-
-.date-title{
-
-    font-size:11px;
-
-    color:#64748b;
-
+.movie-title {
+  color: #3157c7;
+  font-weight: bold;
+  margin-bottom: 12px;
 }
 
-
-.date-value{
-
-    font-size:15px;
-
-    font-weight:800;
-
-    margin-top:2px;
-
+.sentence {
+  border-top: 1px solid #eee;
+  padding: 13px 0;
 }
 
-
-/* ================================
-   카드
-================================ */
-
-.card{
-
-    background:white;
-
-    border-radius:20px;
-
-    margin-top:10px;
-
-    padding:17px;
-
-    box-shadow:
-        0 6px 20px
-        rgba(15,23,42,.06);
-
+.sentence:first-child {
+  border-top: none;
 }
 
-
-.card-title{
-
-    font-size:16px;
-
-    font-weight:900;
-
-    margin-bottom:14px;
-
+.english {
+  font-size: 13pt;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 6px;
 }
 
-
-/* ================================
-   조 편성
-================================ */
-
-.team{
-
-    border:
-        1px solid
-        #e5e7eb;
-
-    border-radius:15px;
-
-    padding:12px;
-
-    margin-bottom:9px;
-
+.korean {
+  margin-bottom: 8px;
+  color: #444;
 }
 
-
-.team:last-child{
-
-    margin-bottom:0;
-
+.word {
+  color: #666;
+  line-height: 1.6;
 }
 
-
-.team-top{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:8px;
-
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #3157c7;
+  color: white;
+  font-size: 12pt;
+  margin-top: 8px;
 }
 
-
-.team-name{
-
-    font-weight:900;
-
-    font-size:14px;
-
+button.secondary {
+  background: #666;
 }
 
-
-.team-place{
-
-    font-size:11px;
-
-    color:#64748b;
-
-    margin-top:2px;
-
+button.complete {
+  background: #16834b;
 }
 
-
-.team-number{
-
-    width:31px;
-
-    height:31px;
-
-    border-radius:50%;
-
-    background:#0f172a;
-
-    color:white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-weight:900;
-
+button:active {
+  transform: scale(.98);
 }
 
-
-.inputs{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:7px;
-
+.song-day {
+  background: #fff7df;
+  border: 1px solid #f0d88a;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
 }
 
-
-input{
-
-    width:100%;
-
-    min-width:0;
-
-    border:
-        1px solid
-        #dbe2ea;
-
-    border-radius:10px;
-
-    padding:
-        10px;
-
-    font-size:13px;
-
-    outline:none;
-
-    background:#f8fafc;
-
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
 }
 
-
-input:focus{
-
-    background:white;
-
-    border-color:#c29b4b;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(194,155,75,.12);
-
+.check input {
+  width: 20px;
+  height: 20px;
 }
 
-
-/* ================================
-   순환
-================================ */
-
-.flow{
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
+.small {
+  color: #777;
+  line-height: 1.6;
 }
 
-
-.flow-item{
-
-    width:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:9px;
-
+#completeMessage {
+  display: none;
+  color: #16834b;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
-
-.circle{
-
-    width:48px;
-
-    height:48px;
-
-    border-radius:50%;
-
-    color:white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-weight:900;
-
-    flex-shrink:0;
-
+.day-list {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
 }
 
-
-.one{
-
-    background:#1d4ed8;
-
+.day {
+  padding: 7px 2px;
+  text-align: center;
+  border-radius: 5px;
+  background: #eee;
+  font-size: 10pt;
 }
 
-
-.two{
-
-    background:#0f766e;
-
+.day.done {
+  background: #16834b;
+  color: white;
 }
 
-
-.three{
-
-    background:#b45309;
-
+.day.today {
+  border: 2px solid #3157c7;
 }
 
-
-.four{
-
-    background:#64748b;
-
+footer {
+  padding: 20px;
+  text-align: center;
+  color: #888;
 }
-
-
-.flow-name{
-
-    font-size:13px;
-
-    font-weight:800;
-
-    min-width:125px;
-
-}
-
-
-.flow-arrow{
-
-    font-size:22px;
-
-    color:#c29b4b;
-
-    font-weight:900;
-
-    margin:2px 0;
-
-}
-
-
-.return{
-
-    margin-top:8px;
-
-    padding:8px 14px;
-
-    border-radius:20px;
-
-    background:#f8fafc;
-
-    color:#8a6a2d;
-
-    font-size:12px;
-
-    font-weight:800;
-
-}
-
-
-/* ================================
-   시간표
-================================ */
-
-.schedule{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:6px;
-
-}
-
-
-.schedule-row{
-
-    display:grid;
-
-    grid-template-columns:
-        105px 1fr;
-
-    align-items:center;
-
-    min-height:45px;
-
-    padding:
-        7px
-        10px;
-
-    background:#f8fafc;
-
-    border-radius:11px;
-
-}
-
-
-.time{
-
-    font-size:12px;
-
-    font-weight:900;
-
-}
-
-
-.place{
-
-    font-size:12px;
-
-    font-weight:700;
-
-}
-
-
-.current{
-
-    background:#fff8e7;
-
-    border:
-        1px solid
-        #e5c878;
-
-}
-
-
-/* ================================
-   버튼
-================================ */
-
-.buttons{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:8px;
-
-    margin-top:12px;
-
-}
-
-
-button{
-
-    border:0;
-
-    border-radius:12px;
-
-    padding:13px 8px;
-
-    font-size:13px;
-
-    font-weight:900;
-
-    cursor:pointer;
-
-}
-
-
-.save{
-
-    background:#0f172a;
-
-    color:white;
-
-}
-
-
-.copy{
-
-    background:#d4af61;
-
-    color:#172033;
-
-}
-
-
-.share{
-
-    background:#2563eb;
-
-    color:white;
-
-    grid-column:
-        span 2;
-
-}
-
-
-.reset{
-
-    background:#f1f5f9;
-
-    color:#64748b;
-
-    grid-column:
-        span 2;
-
-}
-
-
-.status{
-
-    text-align:center;
-
-    color:#64748b;
-
-    font-size:11px;
-
-    margin-top:9px;
-
-    min-height:17px;
-
-}
-
-
-/* ================================
-   모바일
-================================ */
-
-@media(max-width:380px){
-
-    .container{
-
-        padding:
-            7px
-            7px
-            25px;
-
-    }
-
-
-    .header{
-
-        padding:
-            19px
-            15px;
-
-    }
-
-
-    .header h1{
-
-        font-size:21px;
-
-    }
-
-
-    .card{
-
-        padding:
-            14px;
-
-    }
-
-
-    .schedule-row{
-
-        grid-template-columns:
-            95px 1fr;
-
-    }
-
-
-    .time,
-    .place{
-
-        font-size:11px;
-
-    }
-
-}
-
-
 </style>
-
 </head>
-
 
 <body>
 
+<div class="app">
+
+<header>
+  <h1>🎬 60일 영화영어 + 🎵 팝송</h1>
+  <div class="progress" id="progressText">
+    1일차 / 60일
+  </div>
+</header>
 
 <div class="container">
 
+  <!-- 오늘의 영화 -->
+  <div class="card">
 
-<!-- ================================
-     HEADER
-================================ -->
+    <div class="section-title">🎬 영화 영어</div>
 
-<div class="header">
-
-    <div class="header-small">
-        WEDNESDAY MINISTRY
+    <div class="movie-title">
+      Forrest Gump · 1일차
     </div>
 
-    <h1>
-        수요일 전시대 봉사
-    </h1>
-
-
-    <div class="header-info">
-
-        <div class="badge">
-            📍 영인면사무소
-        </div>
-
-        <div class="badge">
-            🕕 6:00 ~ 8:00
-        </div>
-
-        <div class="badge">
-            👥 4개 조
-        </div>
-
+    <div class="small">
+      오늘은 영화의 첫 장면을 떠올리며
+      쉬운 영어 문장을 연습합니다.
     </div>
+
+    <div class="sentence">
+      <div class="english">
+        Life can take us to unexpected places.
+      </div>
+      <div class="korean">
+        인생은 우리를 예상하지 못한 곳으로 데려갈 수 있어요.
+      </div>
+      <div class="word">
+        life = 인생<br>
+        unexpected = 예상하지 못한<br>
+        place = 장소
+      </div>
+      <button onclick="speak('Life can take us to unexpected places.')">
+        🔊 듣기
+      </button>
+      <button class="secondary"
+              onclick="speak('Life can take us to unexpected places.')">
+        🗣️ 따라 말하기
+      </button>
+    </div>
+
+    <div class="sentence">
+      <div class="english">
+        Sometimes the simplest moments are special.
+      </div>
+      <div class="korean">
+        때로는 가장 평범한 순간이 특별해요.
+      </div>
+      <div class="word">
+        sometimes = 때때로<br>
+        simple = 단순한, 평범한<br>
+        special = 특별한
+      </div>
+      <button onclick="speak('Sometimes the simplest moments are special.')">
+        🔊 듣기
+      </button>
+      <button class="secondary"
+              onclick="speak('Sometimes the simplest moments are special.')">
+        🗣️ 따라 말하기
+      </button>
+    </div>
+
+    <div class="sentence">
+      <div class="english">
+        I don't know what will happen next.
+      </div>
+      <div class="korean">
+        다음에 무슨 일이 일어날지 모르겠어요.
+      </div>
+      <div class="word">
+        happen = 일어나다<br>
+        next = 다음에
+      </div>
+      <button onclick="speak(`I don't know what will happen next.`)">
+        🔊 듣기
+      </button>
+      <button class="secondary"
+              onclick="speak(`I don't know what will happen next.`)">
+        🗣️ 따라 말하기
+      </button>
+    </div>
+
+    <div class="sentence">
+      <div class="english">
+        We can learn something from every day.
+      </div>
+      <div class="korean">
+        우리는 매일 무언가를 배울 수 있어요.
+      </div>
+      <div class="word">
+        learn = 배우다<br>
+        something = 무언가<br>
+        every day = 매일
+      </div>
+      <button onclick="speak('We can learn something from every day.')">
+        🔊 듣기
+      </button>
+      <button class="secondary"
+              onclick="speak('We can learn something from every day.')">
+        🗣️ 따라 말하기
+      </button>
+    </div>
+
+    <div class="sentence">
+      <div class="english">
+        Just keep going.
+      </div>
+      <div class="korean">
+        그냥 계속 나아가세요.
+      </div>
+      <div class="word">
+        just = 그냥<br>
+        keep going = 계속 나아가다
+      </div>
+      <button onclick="speak('Just keep going.')">
+        🔊 듣기
+      </button>
+      <button class="secondary"
+              onclick="speak('Just keep going.')">
+        🗣️ 따라 말하기
+      </button>
+    </div>
+
+  </div>
+
+
+  <!-- 팝송 -->
+  <div class="card">
+
+    <div class="section-title">🎵 오늘의 팝송</div>
+
+    <div class="song-day">
+      <strong>1일차 — 듣기 + 가사 이해</strong>
+      <br><br>
+      오늘은 노래를 처음 듣고 전체적인 의미를 이해하는 날입니다.
+    </div>
+
+    <div class="movie-title">
+      🎵 추천곡: Count on Me — Bruno Mars
+    </div>
+
+    <div class="small">
+      오늘은 노래를 먼저 여러 번 들어보고,
+      모르는 표현을 확인해 보세요.
+    </div>
+
+    <button onclick="openSong()">
+      ▶ 공식 음악 영상 열기
+    </button>
+
+    <div class="check">
+      <input type="checkbox" id="songCheck">
+      <label for="songCheck">
+        오늘 노래를 들어봤습니다.
+      </label>
+    </div>
+
+  </div>
+
+
+  <!-- 오늘 완료 -->
+  <div class="card">
+
+    <div class="section-title">✅ 오늘의 학습</div>
+
+    <div class="check">
+      <input type="checkbox" id="movieCheck">
+      <label for="movieCheck">
+        영화 영어 5문장 공부 완료
+      </label>
+    </div>
+
+    <button class="complete" onclick="completeDay()">
+      ✅ 오늘 학습 완료
+    </button>
+
+    <div id="completeMessage">
+      오늘 학습이 완료되었습니다! 🎉
+    </div>
+
+  </div>
+
+
+  <!-- 60일 진행 -->
+  <div class="card">
+
+    <div class="section-title">📅 60일 진행표</div>
+
+    <div class="day-list" id="dayList"></div>
+
+  </div>
 
 </div>
 
-
-
-<!-- 날짜 -->
-
-<div class="date-box">
-
-    <div>
-
-        <div class="date-title">
-            이번 봉사
-        </div>
-
-        <div
-            id="nextWednesday"
-            class="date-value">
-        </div>
-
-    </div>
-
-    📅
+<footer>
+  60일 동안 매일 조금씩 영어를 공부해요. 😊
+</footer>
 
 </div>
-
-
-
-<!-- ================================
-     조 편성
-================================ -->
-
-<div class="card">
-
-    <div class="card-title">
-        👥 조별 봉사자
-    </div>
-
-
-    <div class="team">
-
-        <div class="team-top">
-
-            <div>
-
-                <div class="team-name">
-                    ① 전시대
-                </div>
-
-                <div class="team-place">
-                    전시대 담당
-                </div>
-
-            </div>
-
-            <div class="team-number">
-                1
-            </div>
-
-        </div>
-
-
-        <div class="inputs">
-
-            <input
-                id="team1a"
-                placeholder="봉사자 이름">
-
-            <input
-                id="team1b"
-                placeholder="봉사자 이름">
-
-        </div>
-
-    </div>
-
-
-
-    <div class="team">
-
-        <div class="team-top">
-
-            <div>
-
-                <div class="team-name">
-                    ② 만득이 정류장
-                </div>
-
-                <div class="team-place">
-                    정류장 담당
-                </div>
-
-            </div>
-
-            <div class="team-number">
-                2
-            </div>
-
-        </div>
-
-
-        <div class="inputs">
-
-            <input
-                id="team2a"
-                placeholder="봉사자 이름">
-
-            <input
-                id="team2b"
-                placeholder="봉사자 이름">
-
-        </div>
-
-    </div>
-
-
-
-    <div class="team">
-
-        <div class="team-top">
-
-            <div>
-
-                <div class="team-name">
-                    ③ 면사무소 건너편 정류장
-                </div>
-
-                <div class="team-place">
-                    정류장 담당
-                </div>
-
-            </div>
-
-            <div class="team-number">
-                3
-            </div>
-
-        </div>
-
-
-        <div class="inputs">
-
-            <input
-                id="team3a"
-                placeholder="봉사자 이름">
-
-            <input
-                id="team3b"
-                placeholder="봉사자 이름">
-
-        </div>
-
-    </div>
-
-
-
-    <div class="team">
-
-        <div class="team-top">
-
-            <div>
-
-                <div class="team-name">
-                    ④ 대기조
-                </div>
-
-                <div class="team-place">
-                    다음 순환은 전시대
-                </div>
-
-            </div>
-
-            <div class="team-number">
-                4
-            </div>
-
-        </div>
-
-
-        <div class="inputs">
-
-            <input
-                id="team4a"
-                placeholder="봉사자 이름">
-
-            <input
-                id="team4b"
-                placeholder="봉사자 이름">
-
-        </div>
-
-    </div>
-
-
-</div>
-
-
-
-<!-- ================================
-     순환 구조
-================================ -->
-
-<div class="card">
-
-    <div class="card-title">
-        🔄 15분 순환
-    </div>
-
-
-    <div class="flow">
-
-
-        <div class="flow-item">
-
-            <div class="circle one">
-                ①
-            </div>
-
-            <div class="flow-name">
-                전시대
-            </div>
-
-        </div>
-
-
-        <div class="flow-arrow">
-            ↓
-        </div>
-
-
-        <div class="flow-item">
-
-            <div class="circle two">
-                ②
-            </div>
-
-            <div class="flow-name">
-                만득이 정류장
-            </div>
-
-        </div>
-
-
-        <div class="flow-arrow">
-            ↓
-        </div>
-
-
-        <div class="flow-item">
-
-            <div class="circle three">
-                ③
-            </div>
-
-            <div class="flow-name">
-                면사무소 건너편 정류장
-            </div>
-
-        </div>
-
-
-        <div class="flow-arrow">
-            ↓
-        </div>
-
-
-        <div class="flow-item">
-
-            <div class="circle four">
-                ④
-            </div>
-
-            <div class="flow-name">
-                대기조
-            </div>
-
-        </div>
-
-
-        <div class="return">
-            ↖ ④ 대기조 → ① 전시대
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-<!-- ================================
-     시간표
-================================ -->
-
-<div class="card">
-
-    <div class="card-title">
-        🕕 15분 단위 봉사 일정
-    </div>
-
-
-    <div class="schedule">
-
-
-        <div class="schedule-row">
-
-            <div class="time">
-                6:00 ~ 6:15
-            </div>
-
-            <div class="place">
-                ① 전시대
-            </div>
-
-        </div>
-
-
-        <div class="schedule-row">
-
-            <div class="time">
-                6:15 ~ 6:30
-            </div>
-
-            <div class="place">
-                ② 만득이 정류장
-            </div>
-
-        </div>
-
-
-        <div class="schedule-row">
-
-            <div class="time">
-                6:30 ~ 6:45
-            </div>
-
-            <div class="place">
-                ③ 면사무소 건너편
-            </div>
-
-        </div>
-
-
-        <div class="schedule-row">
-
-            <div class="time">
-                6:45 ~ 7:00
-            </div>
-
-            <div class="place">
-                ④ 대기조
-            </div>
-
-        </div>
-
-
-        <div class="schedule-row">
-
-            <div class="time">
-                7:00 ~ 7:15
-            </div>
-
-            <div class="place">
-                ① 전시대
-            </div>
-
-        </div>
-
-
-        <div class="schedule-row">
-
-            <div class="time">
-                7:15 ~ 7:30
-            </div>
-
-            <div class="place">
-                ② 만득이 정류장
-            </div>
-
-        </div>
-
-
-        <div class="schedule-row">
-
-            <div class="time">
-                7:30 ~ 7:45
-            </div>
-
-            <div class="place">
-                ③ 면사무소 건너편
-            </div>
-
-        </div>
-
-
-        <div class="schedule-row">
-
-            <div class="time">
-                7:45 ~ 8:00
-            </div>
-
-            <div class="place">
-                ④ 대기조 → ① 전시대
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- 버튼 -->
-
-    <div class="buttons">
-
-
-        <button
-            class="save"
-            onclick="saveData()">
-
-            💾 저장
-
-        </button>
-
-
-        <button
-            class="copy"
-            onclick="copyKakao()">
-
-            📋 카톡용 복사
-
-        </button>
-
-
-        <button
-            class="share"
-            onclick="shareKakao()">
-
-            📤 카톡으로 공유하기
-
-        </button>
-
-
-        <button
-            class="reset"
-            onclick="resetData()">
-
-            ↺ 이름 초기화
-
-        </button>
-
-
-    </div>
-
-
-    <div
-        id="status"
-        class="status">
-    </div>
-
-
-</div>
-
-
-
-<div class="status">
-
-    봉사자 이름은 이 휴대폰에 자동 저장됩니다.
-
-</div>
-
-
-</div>
-
 
 
 <script>
 
+const TOTAL_DAYS = 60;
 
-/* ================================
-   ID 목록
-================================ */
+let currentDay =
+  Number(localStorage.getItem("currentDay")) || 1;
 
-const ids = [
-
-    "team1a",
-    "team1b",
-
-    "team2a",
-    "team2b",
-
-    "team3a",
-    "team3b",
-
-    "team4a",
-    "team4b"
-
-];
+let completedDays =
+  JSON.parse(localStorage.getItem("completedDays") || "[]");
 
 
+function speak(text) {
 
-/* ================================
-   다음 수요일
-================================ */
+  if (!("speechSynthesis" in window)) {
+    alert("이 휴대폰에서는 음성 기능을 지원하지 않습니다.");
+    return;
+  }
 
-function getNextWednesday(){
+  speechSynthesis.cancel();
 
-    const today =
-        new Date();
+  const utterance =
+    new SpeechSynthesisUtterance(text);
+
+  utterance.lang = "en-US";
+  utterance.rate = 0.85;
+
+  speechSynthesis.speak(utterance);
+}
+
+
+function openSong() {
+
+  /*
+   * 실제 앱에서는 여기에
+   * 사용자가 선택한 공식 음악 영상 주소를 연결하면 됩니다.
+   */
+  window.open(
+    "https://www.youtube.com/results?search_query=Bruno+Mars+Count+on+Me+official",
+    "_blank"
+  );
+}
+
+
+function completeDay() {
+
+  const movieDone =
+    document.getElementById("movieCheck").checked;
+
+  const songDone =
+    document.getElementById("songCheck").checked;
+
+  if (!movieDone || !songDone) {
+    alert(
+      "영화 영어와 팝송 학습을 모두 체크해주세요."
+    );
+    return;
+  }
+
+  if (!completedDays.includes(currentDay)) {
+    completedDays.push(currentDay);
+  }
+
+  localStorage.setItem(
+    "completedDays",
+    JSON.stringify(completedDays)
+  );
+
+  if (currentDay < TOTAL_DAYS) {
+    currentDay++;
+
+    localStorage.setItem(
+      "currentDay",
+      currentDay
+    );
+  }
+
+  document.getElementById(
+    "completeMessage"
+  ).style.display = "block";
+
+  updateScreen();
+}
+
+
+function updateScreen() {
+
+  document.getElementById(
+    "progressText"
+  ).textContent =
+    currentDay + "일차 / " + TOTAL_DAYS + "일";
+
+  const list =
+    document.getElementById("dayList");
+
+  list.innerHTML = "";
+
+  for (let i = 1; i <= TOTAL_DAYS; i++) {
 
     const day =
-        today.getDay();
+      document.createElement("div");
 
-    let diff =
-        (3 - day + 7) % 7;
+    day.className = "day";
 
-    if(diff === 0){
-
-        diff = 7;
-
+    if (completedDays.includes(i)) {
+      day.classList.add("done");
     }
 
-    const date =
-        new Date(today);
-
-    date.setDate(
-
-        today.getDate()
-        +
-        diff
-
-    );
-
-
-    const y =
-        date.getFullYear();
-
-    const m =
-        date.getMonth()+1;
-
-    const d =
-        date.getDate();
-
-
-    document
-        .getElementById(
-            "nextWednesday"
-        )
-        .textContent =
-
-        `${y}년 ${m}월 ${d}일 수요일`;
-
-}
-
-
-
-/* ================================
-   저장
-================================ */
-
-function saveData(){
-
-    ids.forEach(id => {
-
-        localStorage.setItem(
-
-            id,
-
-            document
-                .getElementById(id)
-                .value
-
-        );
-
-    });
-
-
-    showStatus(
-        "✓ 봉사자 이름이 저장되었습니다."
-    );
-
-}
-
-
-
-/* ================================
-   불러오기
-================================ */
-
-function loadData(){
-
-    ids.forEach(id => {
-
-        const value =
-            localStorage.getItem(id);
-
-
-        if(value !== null){
-
-            document
-                .getElementById(id)
-                .value =
-                value;
-
-        }
-
-    });
-
-}
-
-
-
-/* ================================
-   카톡용 텍스트 생성
-================================ */
-
-function makeKakaoText(){
-
-    const get =
-        id =>
-
-        document
-            .getElementById(id)
-            .value
-            .trim()
-            ||
-            "미정";
-
-
-    const date =
-        document
-            .getElementById(
-                "nextWednesday"
-            )
-            .textContent;
-
-
-    return `🟦 수요일 전시대 봉사 계획
-
-📅 ${date}
-
-📍 장소: 영인면사무소
-🕕 시간: 오후 6:00 ~ 8:00
-
-👥 조 편성
-
-① 전시대
-   ${get("team1a")} / ${get("team1b")}
-
-② 만득이 정류장
-   ${get("team2a")} / ${get("team2b")}
-
-③ 면사무소 건너편 정류장
-   ${get("team3a")} / ${get("team3b")}
-
-④ 대기조
-   ${get("team4a")} / ${get("team4b")}
-
-🔄 15분 순환 일정
-
-6:00 ~ 6:15  ① 전시대
-6:15 ~ 6:30  ② 만득이 정류장
-6:30 ~ 6:45  ③ 면사무소 건너편 정류장
-6:45 ~ 7:00  ④ 대기조
-
-7:00 ~ 7:15  ① 전시대
-7:15 ~ 7:30  ② 만득이 정류장
-7:30 ~ 7:45  ③ 면사무소 건너편 정류장
-7:45 ~ 8:00  ④ 대기조 → ① 전시대`;
-
-}
-
-
-
-/* ================================
-   카톡용 복사
-================================ */
-
-async function copyKakao(){
-
-    const text =
-        makeKakaoText();
-
-
-    try{
-
-        await navigator
-            .clipboard
-            .writeText(text);
-
-
-        showStatus(
-            "✓ 카톡용 내용이 복사되었습니다. 카톡에 붙여넣으세요."
-        );
-
-
-    }catch(error){
-
-        const textarea =
-            document
-                .createElement(
-                    "textarea"
-                );
-
-
-        textarea.value =
-            text;
-
-
-        document
-            .body
-            .appendChild(
-                textarea
-            );
-
-
-        textarea
-            .select();
-
-
-        document
-            .execCommand(
-                "copy"
-            );
-
-
-        textarea
-            .remove();
-
-
-        showStatus(
-            "✓ 복사되었습니다. 카톡에 붙여넣으세요."
-        );
-
+    if (i === currentDay) {
+      day.classList.add("today");
     }
 
+    day.textContent = i;
+
+    list.appendChild(day);
+  }
 }
 
 
-
-/* ================================
-   휴대폰 공유
-================================ */
-
-async function shareKakao(){
-
-    const text =
-        makeKakaoText();
-
-
-    if(
-        navigator.share
-    ){
-
-        try{
-
-            await navigator.share({
-
-                title:
-                    "수요일 전시대 봉사 계획",
-
-                text:
-                    text
-
-            });
-
-
-        }catch(error){
-
-            // 사용자가 공유창을 닫은 경우
-
-        }
-
-    }else{
-
-        await copyKakao();
-
-        alert(
-            "공유 기능을 지원하지 않는 환경입니다.\n\n내용을 복사했습니다.\n카카오톡에 붙여넣어 주세요."
-        );
-
-    }
-
-}
-
-
-
-/* ================================
-   초기화
-================================ */
-
-function resetData(){
-
-    if(
-        !confirm(
-            "봉사자 이름을 모두 삭제할까요?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    ids.forEach(id => {
-
-        localStorage
-            .removeItem(id);
-
-
-        document
-            .getElementById(id)
-            .value =
-            "";
-
-    });
-
-
-    showStatus(
-        "✓ 봉사자 이름을 모두 삭제했습니다."
-    );
-
-}
-
-
-
-/* ================================
-   상태 메시지
-================================ */
-
-function showStatus(message){
-
-    const status =
-        document
-            .getElementById(
-                "status"
-            );
-
-
-    status.textContent =
-        message;
-
-
-    setTimeout(
-
-        () => {
-
-            status.textContent =
-                "";
-
-        },
-
-        3500
-
-    );
-
-}
-
-
-
-/* ================================
-   자동 저장
-================================ */
-
-ids.forEach(id => {
-
-    document
-        .getElementById(id)
-        .addEventListener(
-
-            "input",
-
-            function(){
-
-                localStorage.setItem(
-
-                    id,
-
-                    this.value
-
-                );
-
-            }
-
-        );
-
-});
-
-
-
-/* ================================
-   시작
-================================ */
-
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    function(){
-
-        getNextWednesday();
-
-        loadData();
-
-    }
-
-);
-
+updateScreen();
 
 </script>
-
 
 </body>
 </html>
