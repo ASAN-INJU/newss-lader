@@ -1,27 +1,731 @@
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#246BFD">
+<title>전시대 봉사표</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#f4f7fb;
+  font-family:Arial,"Noto Sans KR",sans-serif;
+  color:#172033;
+}
+
+.wrap{
+  max-width:820px;
+  margin:auto;
+  padding:12px;
+}
+
+h1{
+  text-align:center;
+  font-size:28px;
+  margin:8px 0 14px;
+}
+
+/* 수요일 / 토요일 버튼 */
+.days{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.day{
+  border:0;
+  border-radius:14px;
+  padding:15px 5px;
+  font-size:21px;
+  font-weight:bold;
+  color:#fff;
+  cursor:pointer;
+}
+
+.wed{
+  background:#246BFD;
+}
+
+.sat{
+  background:#18A566;
+}
+
+.day.active{
+  outline:4px solid #ffd400;
+}
+
+/* 카드 */
+.card{
+  background:#fff;
+  border:2px solid #222;
+  border-radius:16px;
+  padding:12px;
+  margin-bottom:14px;
+  box-shadow:0 2px 8px #0001;
+}
+
+.title{
+  text-align:center;
+  font-size:21px;
+  font-weight:bold;
+  margin:2px 0 12px;
+}
+
+/* 조 입력 */
+.team{
+  display:grid;
+  grid-template-columns:62px 1fr 1fr 1fr;
+  gap:6px;
+  margin-bottom:8px;
+}
+
+.team b{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #222;
+  border-radius:9px;
+  background:#eef2f7;
+  font-size:17px;
+}
+
+input{
+  width:100%;
+  padding:12px 7px;
+  font-size:17px;
+  border:2px solid #aaa;
+  border-radius:9px;
+  text-align:center;
+}
+
+/* 버튼 */
+.buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+button{
+  border:0;
+  border-radius:11px;
+  padding:13px;
+  font-size:18px;
+  font-weight:bold;
+  color:white;
+  cursor:pointer;
+}
+
+.save{
+  background:#246BFD;
+}
+
+.reset{
+  background:#555;
+}
+
+.note{
+  text-align:center;
+  font-size:14px;
+  color:#666;
+  margin:8px 0 0;
+}
+
+.current{
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  padding:10px;
+  border-radius:10px;
+  background:#eef3ff;
+  margin-bottom:12px;
+}
+
+/* 봉사표 */
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  overflow:hidden;
+  border:2px solid #222;
+  border-radius:10px;
+  table-layout:fixed;
+}
+
+th,
+td{
+  border-right:1.5px solid #222;
+  border-bottom:1.5px solid #222;
+  text-align:center;
+  padding:9px 3px;
+}
+
+th:last-child,
+td:last-child{
+  border-right:0;
+}
+
+tr:last-child td{
+  border-bottom:0;
+}
+
+th{
+  background:#e8edf7;
+  font-size:14px;
+}
+
+td{
+  font-size:14px;
+  font-weight:bold;
+  vertical-align:middle;
+}
+
+/* ★ 시간 칸 크게 */
+.time{
+  background:#fafafa;
+  font-size:18px;
+  font-weight:900;
+  line-height:1.25;
+  white-space:normal;
+  padding:14px 5px;
+  min-height:58px;
+}
+
+/* 조별 색상 */
+.g1{
+  background:#fff3a6;
+}
+
+.g2{
+  background:#cfe8ff;
+}
+
+.g3{
+  background:#d9f5d2;
+}
+
+.g4{
+  background:#ffd8e8;
+}
+
+small{
+  font-size:12px;
+  line-height:1.25;
+}
+
+/* =========================
+   휴대폰 화면
+   ========================= */
+
 @media(max-width:520px){
 
-  .wrap{padding:7px}
+  .wrap{
+    padding:7px;
+  }
 
-  h1{font-size:24px}
+  h1{
+    font-size:24px;
+    margin:6px 0 12px;
+  }
+
+  .days{
+    gap:8px;
+  }
+
+  .day{
+    padding:14px 4px;
+    font-size:19px;
+  }
+
+  .card{
+    padding:8px;
+    border-radius:14px;
+  }
+
+  .title{
+    font-size:20px;
+  }
+
+  /* 조 입력칸 */
+  .team{
+    grid-template-columns:55px 1fr 1fr 1fr;
+    gap:5px;
+  }
+
+  .team b{
+    font-size:16px;
+  }
+
+  input{
+    padding:12px 4px;
+    font-size:16px;
+  }
+
+  button{
+    padding:13px 8px;
+    font-size:17px;
+  }
+
+  /* ★★★★★
+     휴대폰 시간 칸 확대
+     ★★★★★ */
+
+  table{
+    table-layout:fixed;
+  }
+
+  th,
+  td{
+    padding:10px 2px;
+  }
+
+  /* 시간 열을 넓게 */
+  th:first-child,
+  td:first-child{
+    width:45%;
+  }
 
   .time{
     font-size:20px;
-    min-height:70px;
-    padding:16px 3px;
+    font-weight:900;
     line-height:1.25;
-  }
-
-  th{
-    font-size:14px;
-    padding:10px 2px;
+    min-height:70px;
+    padding:15px 3px;
+    white-space:normal;
   }
 
   td{
     font-size:15px;
-    padding:10px 2px;
   }
 
   small{
     font-size:12px;
   }
 }
+
+
+/* 아주 작은 휴대폰 */
+@media(max-width:360px){
+
+  h1{
+    font-size:22px;
+  }
+
+  .day{
+    font-size:18px;
+  }
+
+  .time{
+    font-size:18px;
+    min-height:65px;
+  }
+
+  td{
+    font-size:14px;
+  }
+
+  small{
+    font-size:11px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <h1>📋 전시대 봉사표</h1>
+
+  <!-- 요일 선택 -->
+  <div class="days">
+
+    <button
+      class="day wed active"
+      onclick="showDay('wed')">
+      수요일
+    </button>
+
+    <button
+      class="day sat"
+      onclick="showDay('sat')">
+      토요일
+    </button>
+
+  </div>
+
+
+  <!-- 수요일 -->
+  <div id="wed" class="dayContent">
+
+    <div class="card">
+
+      <div class="title">
+        수요일 전시대 봉사
+      </div>
+
+      <!-- 조 입력 -->
+      <div class="team">
+        <b>1조</b>
+        <input id="wed1" placeholder="이름">
+        <input id="wed2" placeholder="이름">
+        <input id="wed3" placeholder="이름">
+      </div>
+
+      <div class="team">
+        <b>2조</b>
+        <input id="wed4" placeholder="이름">
+        <input id="wed5" placeholder="이름">
+        <input id="wed6" placeholder="이름">
+      </div>
+
+      <div class="team">
+        <b>3조</b>
+        <input id="wed7" placeholder="이름">
+        <input id="wed8" placeholder="이름">
+        <input id="wed9" placeholder="이름">
+      </div>
+
+      <div class="team">
+        <b>4조</b>
+        <input id="wed10" placeholder="이름">
+        <input id="wed11" placeholder="이름">
+        <input id="wed12" placeholder="이름">
+      </div>
+
+      <div class="buttons">
+
+        <button
+          class="save"
+          onclick="saveData()">
+          💾 저장
+        </button>
+
+        <button
+          class="reset"
+          onclick="resetData()">
+          🔄 초기화
+        </button>
+
+      </div>
+
+      <div class="note">
+        이름을 입력하고 저장하세요.
+      </div>
+
+    </div>
+
+
+    <!-- 수요일 표 -->
+    <div class="card">
+
+      <div class="current">
+        🟦 수요일 15분 로테이션
+      </div>
+
+      <table>
+
+        <tr>
+          <th>시간</th>
+          <th>봉사자</th>
+        </tr>
+
+        <tr>
+          <td class="time">
+            09:00<br>
+            ~<br>
+            09:15
+          </td>
+          <td class="g1">
+            1조<br>
+            <small id="wedName1">김○○</small>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="time">
+            09:15<br>
+            ~<br>
+            09:30
+          </td>
+          <td class="g2">
+            2조<br>
+            <small id="wedName2">이○○</small>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="time">
+            09:30<br>
+            ~<br>
+            09:45
+          </td>
+          <td class="g3">
+            3조<br>
+            <small id="wedName3">박○○</small>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="time">
+            09:45<br>
+            ~<br>
+            10:00
+          </td>
+          <td class="g4">
+            4조<br>
+            <small id="wedName4">최○○</small>
+          </td>
+        </tr>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- 토요일 -->
+  <div id="sat" class="dayContent" style="display:none">
+
+    <div class="card">
+
+      <div class="title">
+        토요일 전시대 봉사
+      </div>
+
+      <!-- 조 입력 -->
+      <div class="team">
+        <b>1조</b>
+        <input id="sat1" placeholder="이름">
+        <input id="sat2" placeholder="이름">
+        <input id="sat3" placeholder="이름">
+      </div>
+
+      <div class="team">
+        <b>2조</b>
+        <input id="sat4" placeholder="이름">
+        <input id="sat5" placeholder="이름">
+        <input id="sat6" placeholder="이름">
+      </div>
+
+      <div class="team">
+        <b>3조</b>
+        <input id="sat7" placeholder="이름">
+        <input id="sat8" placeholder="이름">
+        <input id="sat9" placeholder="이름">
+      </div>
+
+      <div class="team">
+        <b>4조</b>
+        <input id="sat10" placeholder="이름">
+        <input id="sat11" placeholder="이름">
+        <input id="sat12" placeholder="이름">
+      </div>
+
+      <div class="buttons">
+
+        <button
+          class="save"
+          onclick="saveData()">
+          💾 저장
+        </button>
+
+        <button
+          class="reset"
+          onclick="resetData()">
+          🔄 초기화
+        </button>
+
+      </div>
+
+      <div class="note">
+        이름을 입력하고 저장하세요.
+      </div>
+
+    </div>
+
+
+    <!-- 토요일表 -->
+    <div class="card">
+
+      <div class="current">
+        🟩 토요일 15분 로테이션
+      </div>
+
+      <table>
+
+        <tr>
+          <th>시간</th>
+          <th>봉사자</th>
+        </tr>
+
+        <tr>
+          <td class="time">
+            09:00<br>
+            ~<br>
+            09:15
+          </td>
+          <td class="g1">
+            1조<br>
+            <small id="satName1">김○○</small>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="time">
+            09:15<br>
+            ~<br>
+            09:30
+          </td>
+          <td class="g2">
+            2조<br>
+            <small id="satName2">이○○</small>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="time">
+            09:30<br>
+            ~<br>
+            09:45
+          </td>
+          <td class="g3">
+            3조<br>
+            <small id="satName3">박○○</small>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="time">
+            09:45<br>
+            ~<br>
+            10:00
+          </td>
+          <td class="g4">
+            4조<br>
+            <small id="satName4">최○○</small>
+          </td>
+        </tr>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   요일 전환
+   ========================= */
+
+function showDay(day){
+
+  document.getElementById("wed").style.display =
+    day === "wed" ? "block" : "none";
+
+  document.getElementById("sat").style.display =
+    day === "sat" ? "block" : "none";
+
+  document.querySelector(".wed").classList.toggle(
+    "active",
+    day === "wed"
+  );
+
+  document.querySelector(".sat").classList.toggle(
+    "active",
+    day === "sat"
+  );
+}
+
+
+/* =========================
+   이름 저장
+   ========================= */
+
+function saveData(){
+
+  const inputs = document.querySelectorAll("input");
+
+  inputs.forEach(function(input){
+
+    localStorage.setItem(
+      input.id,
+      input.value
+    );
+
+  });
+
+  alert("저장되었습니다.");
+
+}
+
+
+/* =========================
+   저장된 이름 불러오기
+   ========================= */
+
+function loadData(){
+
+  const inputs = document.querySelectorAll("input");
+
+  inputs.forEach(function(input){
+
+    const saved =
+      localStorage.getItem(input.id);
+
+    if(saved !== null){
+      input.value = saved;
+    }
+
+  });
+
+}
+
+
+/* =========================
+   초기화
+   ========================= */
+
+function resetData(){
+
+  if(!confirm("입력한 이름을 모두 지울까요?")){
+    return;
+  }
+
+  const inputs = document.querySelectorAll("input");
+
+  inputs.forEach(function(input){
+
+    input.value = "";
+
+    localStorage.removeItem(input.id);
+
+  });
+
+}
+
+
+/* =========================
+   시작
+   ========================= */
+
+loadData();
+
+</script>
+
+</body>
+</html>
+```
+
