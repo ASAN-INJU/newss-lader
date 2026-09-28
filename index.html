@@ -21,12 +21,11 @@ body{
   color:#172033;
 }
 
-/* 전체 */
 .wrap{
   width:100%;
   max-width:520px;
   margin:auto;
-  padding:10px;
+  padding:8px;
 }
 
 /* 제목 */
@@ -36,7 +35,7 @@ h1{
   margin:8px 0 14px;
 }
 
-/* 요일 */
+/* 요일 버튼 */
 .days{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -83,20 +82,26 @@ h1{
   margin:3px 0 12px;
 }
 
-/* 장소 입력 */
-.place-title{
-  font-size:18px;
-  font-weight:bold;
-  margin:8px 0 5px;
+/* 장소 */
+.place{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:10px 6px;
+  margin-bottom:6px;
+  border:2px solid #222;
+  border-radius:10px;
+  background:#f8f9fb;
 }
 
-.place-input{
-  width:100%;
-  padding:13px;
-  border:2px solid #aaa;
-  border-radius:10px;
-  text-align:center;
-  font-size:18px;
+.place-number{
+  font-size:17px;
+  font-weight:900;
+  min-width:35px;
+}
+
+.place-name{
+  font-size:17px;
   font-weight:bold;
 }
 
@@ -148,7 +153,7 @@ h1{
   text-align:center;
 }
 
-/* 저장 */
+/* 버튼 */
 .buttons{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -163,6 +168,7 @@ button{
   font-size:17px;
   font-weight:bold;
   color:white;
+  cursor:pointer;
 }
 
 .save{
@@ -187,25 +193,25 @@ button{
 /* 시간 */
 .time{
   text-align:center;
-  font-size:23px;
+  font-size:24px;
   font-weight:900;
-  padding:14px 5px;
+  padding:15px 5px;
   background:#f5f5f5;
   border:2px solid #222;
   border-radius:10px;
   margin-bottom:8px;
 }
 
-/* 로테이션 한 줄 */
+/* 로테이션 */
 .rotation{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:7px;
-  margin-bottom:10px;
+  margin-bottom:11px;
 }
 
 .rotation-item{
-  min-height:88px;
+  min-height:92px;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -214,6 +220,7 @@ button{
   border:2px solid #222;
   border-radius:10px;
   font-weight:bold;
+  padding:6px;
 }
 
 .rotation-item strong{
@@ -222,7 +229,8 @@ button{
 
 .rotation-item span{
   font-size:15px;
-  margin-top:4px;
+  line-height:1.3;
+  margin-top:5px;
 }
 
 /* 조 색상 */
@@ -242,20 +250,15 @@ button{
   background:#ffd8e8;
 }
 
-/* 안내 */
 .note{
   text-align:center;
   color:#666;
   font-size:14px;
   line-height:1.5;
-  margin:8px 0;
+  margin:8px 0 15px;
 }
 
-
-/* =========================
-   휴대폰
-   ========================= */
-
+/* 휴대폰 */
 @media(max-width:520px){
 
   .wrap{
@@ -271,13 +274,17 @@ button{
     padding:15px 4px;
   }
 
+  .place-name{
+    font-size:17px;
+  }
+
   .time{
     font-size:24px;
-    padding:16px 4px;
+    padding:17px 4px;
   }
 
   .rotation-item{
-    min-height:92px;
+    min-height:96px;
   }
 
   .rotation-item strong{
@@ -285,738 +292,6 @@ button{
   }
 
   .rotation-item span{
-    font-size:16px;
-  }
-
-}
-
-
-/* 아주 작은 휴대폰 */
-@media(max-width:360px){
-
-  h1{
-    font-size:23px;
-  }
-
-  .rotation{
-    grid-template-columns:1fr;
-  }
-
-  .time{
-    font-size:22px;
-  }
-
-}
-
-</style>
-</head>
-
-
-<body>
-
-<div class="wrap">
-
-<h1>📋 전시대 봉사표</h1>
-
-
-<!-- 요일 선택 -->
-
-<div class="days">
-
-<button
-class="day wed active"
-onclick="showDay('wed')">
-
-수요일
-
-</button>
-
-
-<button
-class="day sat"
-onclick="showDay('sat')">
-
-토요일
-
-</button>
-
-</div>
-
-
-
-<!-- =========================
-     입력
-========================= -->
-
-<div class="card">
-
-<div class="title">
-봉사 장소 및 조원 입력
-</div>
-
-
-<div class="place-title">
-① 장소
-</div>
-
-<input
-class="place-input"
-id="place1"
-value="전시대 1번"
->
-
-
-<div class="place-title">
-② 장소
-</div>
-
-<input
-class="place-input"
-id="place2"
-value="전시대 2번"
->
-
-
-<div class="place-title">
-③ 장소
-</div>
-
-<input
-class="place-input"
-id="place3"
-value="전시대 3번"
->
-
-
-<div class="place-title">
-④ 장소
-</div>
-
-<input
-class="place-input"
-id="place4"
-value="전시대 4번"
->
-
-
-<br>
-
-
-<!-- 1조 -->
-
-<div class="group">
-
-<div class="group-name g1bg">
-1조
-</div>
-
-<div class="names">
-
-<input id="g1_1" placeholder="이름">
-<input id="g1_2" placeholder="이름">
-<input id="g1_3" placeholder="이름">
-
-</div>
-
-</div>
-
-
-<!-- 2조 -->
-
-<div class="group">
-
-<div class="group-name g2bg">
-2조
-</div>
-
-<div class="names">
-
-<input id="g2_1" placeholder="이름">
-<input id="g2_2" placeholder="이름">
-<input id="g2_3" placeholder="이름">
-
-</div>
-
-</div>
-
-
-<!-- 3조 -->
-
-<div class="group">
-
-<div class="group-name g3bg">
-3조
-</div>
-
-<div class="names">
-
-<input id="g3_1" placeholder="이름">
-<input id="g3_2" placeholder="이름">
-<input id="g3_3" placeholder="이름">
-
-</div>
-
-</div>
-
-
-<!-- 4조 -->
-
-<div class="group">
-
-<div class="group-name g4bg">
-4조
-</div>
-
-<div class="names">
-
-<input id="g4_1" placeholder="이름">
-<input id="g4_2" placeholder="이름">
-<input id="g4_3" placeholder="이름">
-
-</div>
-
-</div>
-
-
-<div class="buttons">
-
-<button class="save" onclick="saveData()">
-💾 저장
-</button>
-
-<button class="reset" onclick="resetData()">
-🔄 초기화
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- =========================
-     수요일
-========================= -->
-
-<div id="wed">
-
-<div class="card">
-
-<div class="current">
-🟦 수요일 · 오후 6:00 ~ 8:00
-</div>
-
-
-<div class="title">
-15분 단위 로테이션
-</div>
-
-
-
-<!-- 18:00 -->
-
-<div class="time">
-18:00 ~ 18:15
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>1조</strong>
-<span id="wed_g1_1"></span>
-</div>
-
-<div class="rotation-item r2">
-<strong>2조</strong>
-<span id="wed_g2_1"></span>
-</div>
-
-<div class="rotation-item r3">
-<strong>3조</strong>
-<span id="wed_g3_1"></span>
-</div>
-
-<div class="rotation-item r4">
-<strong>4조</strong>
-<span id="wed_g4_1"></span>
-</div>
-
-</div>
-
-
-
-<!-- 18:15 -->
-
-<div class="time">
-18:15 ~ 18:30
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>1조</strong>
-<span id="wed_g1_2"></span>
-</div>
-
-<div class="rotation-item r2">
-<strong>2조</strong>
-<span id="wed_g2_2"></span>
-</div>
-
-<div class="rotation-item r3">
-<strong>3조</strong>
-<span id="wed_g3_2"></span>
-</div>
-
-<div class="rotation-item r4">
-<strong>4조</strong>
-<span id="wed_g4_2"></span>
-</div>
-
-</div>
-
-
-
-<!-- 18:30 -->
-
-<div class="time">
-18:30 ~ 18:45
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>1조</strong>
-<span id="wed_g1_3"></span>
-</div>
-
-<div class="rotation-item r2">
-<strong>2조</strong>
-<span id="wed_g2_3"></span>
-</div>
-
-<div class="rotation-item r3">
-<strong>3조</strong>
-<span id="wed_g3_3"></span>
-</div>
-
-<div class="rotation-item r4">
-<strong>4조</strong>
-<span id="wed_g4_3"></span>
-</div>
-
-</div>
-
-
-
-<!-- 18:45 -->
-
-<div class="time">
-18:45 ~ 19:00
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>1조</strong>
-<span id="wed_g1_4"></span>
-</div>
-
-<div class="rotation-item r2">
-<strong>2조</strong>
-<span id="wed_g2_4"></span>
-</div>
-
-<div class="rotation-item r3">
-<strong>3조</strong>
-<span id="wed_g3_4"></span>
-</div>
-
-<div class="rotation-item r4">
-<strong>4조</strong>
-<span id="wed_g4_4"></span>
-</div>
-
-</div>
-
-
-
-<!-- 19:00 -->
-
-<div class="time">
-19:00 ~ 19:15
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>1조</strong>
-<span id="wed_g1_5"></span>
-</div>
-
-<div class="rotation-item r2">
-<strong>2조</strong>
-<span id="wed_g2_5"></span>
-</div>
-
-<div class="rotation-item r3">
-<strong>3조</strong>
-<span id="wed_g3_5"></span>
-</div>
-
-<div class="rotation-item r4">
-<strong>4조</strong>
-<span id="wed_g4_5"></span>
-</div>
-
-</div>
-
-
-
-<!-- 19:15 -->
-
-<div class="time">
-19:15 ~ 19:30
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>1조</strong>
-<span id="wed_g1_6"></span>
-</div>
-
-<div class="rotation-item r2">
-<strong>2조</strong>
-<span id="wed_g2_6"></span>
-</div>
-
-<div class="rotation-item r3">
-<strong>3조</strong>
-<span id="wed_g3_6"></span>
-</div>
-
-<div class="rotation-item r4">
-<strong>4조</strong>
-<span id="wed_g4_6"></span>
-</div>
-
-</div>
-
-
-
-<!-- 19:30 -->
-
-<div class="time">
-19:30 ~ 19:45
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>1조</strong>
-<span id="wed_g1_7"></span>
-</div>
-
-<div class="rotation-item r2">
-<strong>2조</strong>
-<span id="wed_g2_7"></span>
-</div>
-
-<div class="rotation-item r3">
-<strong>3조</strong>
-<span id="wed_g3_7"></span>
-</div>
-
-<div class="rotation-item r4">
-<strong>4조</strong>
-<span id="wed_g4_7"></span>
-</div>
-
-</div>
-
-
-
-<!-- 19:45 -->
-
-<div class="time">
-19:45 ~ 20:00
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>1조</strong>
-<span id="wed_g1_8"></span>
-</div>
-
-<div class="rotation-item r2">
-<strong>2조</strong>
-<span id="wed_g2_8"></span>
-</div>
-
-<div class="rotation-item r3">
-<strong>3조</strong>
-<span id="wed_g3_8"></span>
-</div>
-
-<div class="rotation-item r4">
-<strong>4조</strong>
-<span id="wed_g4_8"></span>
-</div>
-
-</div>
-
-
-</div>
-</div>
-
-
-
-<!-- =========================
-     토요일
-========================= -->
-
-<div id="sat" style="display:none">
-
-<div class="card">
-
-<div class="current">
-🟩 토요일 · 오후 6:00 ~ 8:00
-</div>
-
-
-<div class="title">
-15분 단위 로테이션
-</div>
-
-
-
-<div id="satSchedule"></div>
-
-</div>
-
-</div>
-
-
-
-<div class="note">
-
-각 조는 15분마다 다음 장소로 이동합니다.<br>
-총 4곳을 순환합니다.
-
-</div>
-
-
-</div>
-
-
-
-<script>
-
-
-/* =========================
-   로테이션 장소
-========================= */
-
-/*
-
-1조 : 1 → 2 → 3 → 4
-2조 : 2 → 3 → 4 → 1
-3조 : 3 → 4 → 1 → 2
-4조 : 4 → 1 → 2 → 3
-
-*/
-
-const rotation = [
-
-[1,2,3,4],
-[2,3,4,1],
-[3,4,1,2],
-[4,1,2,3]
-
-];
-
-
-/* =========================
-   시간
-========================= */
-
-const times = [
-
-"18:00 ~ 18:15",
-"18:15 ~ 18:30",
-"18:30 ~ 18:45",
-"18:45 ~ 19:00",
-"19:00 ~ 19:15",
-"19:15 ~ 19:30",
-"19:30 ~ 19:45",
-"19:45 ~ 20:00"
-
-];
-
-
-/* =========================
-   토요일 표 만들기
-========================= */
-
-function createSaturday(){
-
-  let html="";
-
-  for(let i=0;i<8;i++){
-
-    html += `
-    
-    <div class="time">
-      ${times[i]}
-    </div>
-
-    <div class="rotation">
-
-      <div class="rotation-item r1">
-        <strong>1조</strong>
-        <span id="sat_g1_${i}"></span>
-      </div>
-
-      <div class="rotation-item r2">
-        <strong>2조</strong>
-        <span id="sat_g2_${i}"></span>
-      </div>
-
-      <div class="rotation-item r3">
-        <strong>3조</strong>
-        <span id="sat_g3_${i}"></span>
-      </div>
-
-      <div class="rotation-item r4">
-        <strong>4조</strong>
-        <span id="sat_g4_${i}"></span>
-      </div>
-
-    </div>
-
-    `;
-
-  }
-
-  document.getElementById("satSchedule").innerHTML=html;
-
-}
-
-
-/* =========================
-   이름 표시
-========================= */
-
-function updateSchedule(){
-
-  const places=[];
-
-  for(let i=1;i<=4;i++){
-
-    places.push(
-      document.getElementById("place"+i).value
-    );
-
-  }
-
-
-  for(let day of ["wed","sat"]){
-
-    for(let group=0;group<4;group++){
-
-      for(let slot=0;slot<8;slot++){
-
-        const placeIndex =
-          rotation[group][slot % 4]-1;
-
-        const name =
-          places[placeIndex];
-
-        const el =
-          document.getElementById(
-            `${day}_g${group+1}_${day==="sat"?slot+1:slot+1}`
-          );
-
-        if(el){
-          el.textContent=name;
-        }
-
-      }
-
-    }
-
-  }
-
-}
-
-
-/* =========================
-   저장
-========================= */
-
-function saveData(){
-
-  const inputs =
-    document.querySelectorAll("input");
-
-  inputs.forEach(input=>{
-
-    localStorage.setItem(
-      input.id,
-      input.value
-    );
-
-  });
-
-  updateSchedule();
-
-  alert("저장되었습니다.");
-
-}
-
-
-/* =========================
-   불러오기
-========================= */
-
-function loadData(){
-
-  const inputs =
-    document.querySelectorAll("input");
-
-  inputs.forEach(input=>{
-
-    const value =
-      localStorage.getItem(input.id);
-
-    if(value!==null){
-      input.value=value;
-    }
-
-  });
-
-}
-
-
-/* =========================
-   초기화
-========================= */
-
-function resetData(){
-
-  if(!confirm("입력한 내용을 모두 지울까요?")){
-    return;
-  }
-
-  const inputs =
-    document.querySelectorAll("input");
-
-  inputs.forEach(input=>{
-
-    localStorage.removeItem(input.id);
-
-    if(input.classList.contains("place-input")){
+    font-siz
 ```
 
