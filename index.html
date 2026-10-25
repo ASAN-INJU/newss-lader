@@ -1,1354 +1,584 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width,
-      initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#246BFD">
-
-<title>전시대 봉사표</title>
+<title>오늘의 전시대 순환봉사 배정표</title>
 
 <style>
-
-/* =========================
-   기본
-========================= */
-
-*{
-    box-sizing:border-box;
-}
-
+*{box-sizing:border-box}
 body{
-    margin:0;
-    padding:0;
-    background:#eef2f7;
-    font-family:Arial,"Noto Sans KR",sans-serif;
-    color:#111;
+  margin:0;background:#f3f6fb;color:#253044;
+  font-family:Arial,"Noto Sans KR",sans-serif;font-size:16px
 }
-
-.wrap{
-    width:100%;
-    max-width:600px;
-    margin:0 auto;
-    padding:10px;
-}
-
-
-/* =========================
-   제목
-========================= */
-
-h1{
-    text-align:center;
-    font-size:30px;
-    font-weight:900;
-    margin:8px 0 15px;
-}
-
-
-/* =========================
-   수요일 / 토요일
-========================= */
-
-.days{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-bottom:12px;
-}
-
-.day{
-    border:0;
-    border-radius:15px;
-    padding:17px 5px;
-    font-size:23px;
-    font-weight:900;
-    color:white;
-    cursor:pointer;
-}
-
-.wed{
-    background:#246BFD;
-}
-
-.sat{
-    background:#18A566;
-}
-
-.day.active{
-    outline:5px solid #FFD400;
-}
-
-
-/* =========================
-   카드
-========================= */
-
+header{background:#246bfd;color:white;text-align:center;padding:18px 10px}
+header h1{font-size:22px;margin:0 0 7px}
+header p{font-size:14px;margin:0}
+main{max-width:850px;margin:auto;padding:12px}
 .card{
-    background:white;
-    border:2px solid #222;
-    border-radius:16px;
-    padding:10px;
-    margin-bottom:13px;
+  background:white;border-radius:14px;padding:16px;
+  margin-bottom:14px;box-shadow:0 2px 8px #0000000c
 }
-
-.title{
-    text-align:center;
-    font-size:23px;
-    font-weight:900;
-    margin:5px 0 12px;
+h2{font-size:19px;margin:0 0 13px}
+h3{font-size:17px;margin:14px 0 9px}
+.small{font-size:13px;color:#687386;line-height:1.6}
+input,select,textarea,button{font:inherit}
+input[type=text],select,textarea{
+  width:100%;padding:11px;border:1px solid #cbd5e1;
+  border-radius:9px;background:white;color:#253044
 }
-
-
-/* =========================
-   봉사 장소
-========================= */
-
-.place{
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    border:2px solid #555;
-    border-radius:11px;
-
-    padding:12px 8px;
-    margin-bottom:7px;
-
-    background:#fafafa;
+textarea{min-height:90px;resize:vertical}
+.people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.person{padding:10px;border:1px solid #e1e7f0;border-radius:10px}
+.person input{margin-bottom:8px}
+.session{
+  display:flex;align-items:center;gap:11px;padding:13px;
+  margin:8px 0;border:1px solid #dbe3ef;border-radius:10px;
+  cursor:pointer
 }
-
-.place-number{
-    font-size:20px;
-    font-weight:900;
-    min-width:35px;
-}
-
-.place-name{
-    font-size:19px;
-    font-weight:900;
-}
-
-
-/* =========================
-   조원 입력
-========================= */
-
-.group{
-    border:2px solid #222;
-    border-radius:13px;
-    padding:9px;
-    margin-bottom:9px;
-}
-
-.group-name{
-    text-align:center;
-    font-size:21px;
-    font-weight:900;
-
-    padding:8px;
-    border-radius:9px;
-
-    margin-bottom:7px;
-}
-
-.g1bg{
-    background:#fff19a;
-}
-
-.g2bg{
-    background:#c9e4ff;
-}
-
-.g3bg{
-    background:#cff1ca;
-}
-
-.g4bg{
-    background:#ffd3e5;
-}
-
-.names{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:6px;
-}
-
-.names input{
-    width:100%;
-    padding:12px 3px;
-
-    font-size:17px;
-
-    border:2px solid #999;
-    border-radius:9px;
-
-    text-align:center;
-}
-
-
-/* =========================
-   저장 / 초기화
-========================= */
-
-.buttons{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-    margin-top:10px;
-}
-
+.session input{width:23px;height:23px;flex-shrink:0}
+.session strong{display:block}
+.session small{display:block;margin-top:4px;color:#687386}
 button{
-    border:0;
-    border-radius:12px;
-
-    padding:14px 5px;
-
-    font-size:18px;
-    font-weight:900;
-
-    cursor:pointer;
+  border:0;border-radius:10px;padding:12px 14px;
+  background:#246bfd;color:white;font-weight:bold;cursor:pointer
 }
-
-.save{
-    background:#246BFD;
-    color:white;
+.secondary{background:#e8eef9;color:#204a91}
+.dark{background:#334155;color:white}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.actions button{flex:1;min-width:120px}
+.notice{
+  background:#fff9e8;border:1px solid #f1df9e;
+  border-radius:10px;padding:12px;line-height:1.8
 }
-
-.reset{
-    background:#555;
-    color:white;
+.table-wrap{width:100%;overflow-x:auto;margin:8px 0 18px}
+table{width:100%;min-width:500px;border-collapse:collapse;font-size:13px}
+th,td{padding:8px 5px;border:1px solid #dce3ed;text-align:center;vertical-align:middle}
+th{background:#edf3ff}
+.tag{display:inline-block;padding:4px 6px;border-radius:6px;background:#e8f0ff;color:#204a91;font-weight:bold;font-size:12px}
+.tag.street{background:#fff0d8;color:#8a5100}
+.tag.rest{background:#f0f1f3;color:#626b79}
+.member-names{font-size:12px;color:#536074;display:block;margin-top:5px;overflow-wrap:anywhere}
+.person-schedule{padding:12px 0;border-bottom:1px solid #e5eaf1;line-height:1.9}
+.hidden{display:none!important}
+#shareUrl{margin-top:8px}
+@media(max-width:430px){
+  main{padding:9px}
+  .card{padding:13px}
+  header h1{font-size:20px}
+  .people{grid-template-columns:1fr}
 }
-
-
-/* =========================
-   요일 안내
-========================= */
-
-.current{
-    text-align:center;
-
-    font-size:22px;
-    font-weight:900;
-
-    padding:13px;
-
-    border-radius:11px;
-
-    background:#edf3ff;
-
-    margin-bottom:10px;
+@media print{
+  body{background:white}
+  header{background:white;color:black}
+  .no-print{display:none!important}
+  .card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
 }
-
-
-/* =========================
-   ★ 시간 ★
-========================= */
-
-.time{
-    text-align:center;
-
-    font-size:30px;
-    font-weight:900;
-
-    padding:19px 5px;
-
-    background:#222;
-    color:white;
-
-    border-radius:13px;
-
-    margin-top:14px;
-    margin-bottom:8px;
-
-    letter-spacing:-1px;
-}
-
-
-/* =========================
-   4개 조
-========================= */
-
-.rotation{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:8px;
-
-    margin-bottom:10px;
-}
-
-.rotation-item{
-
-    min-height:115px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    border:3px solid #222;
-
-    border-radius:13px;
-
-    padding:8px;
-}
-
-
-/* 조 이름 */
-
-.rotation-item strong{
-    font-size:22px;
-    font-weight:900;
-    margin-bottom:7px;
-}
-
-
-/* 장소 */
-
-.rotation-item span{
-    font-size:18px;
-    font-weight:900;
-    line-height:1.35;
-}
-
-
-/* =========================
-   조별 색상
-========================= */
-
-.r1{
-    background:#fff19a;
-}
-
-.r2{
-    background:#c9e4ff;
-}
-
-.r3{
-    background:#cff1ca;
-}
-
-.r4{
-    background:#ffd3e5;
-}
-
-
-/* =========================
-   안내문
-========================= */
-
-.note{
-    text-align:center;
-
-    font-size:17px;
-    font-weight:bold;
-
-    line-height:1.6;
-
-    color:#555;
-
-    padding:8px 0 20px;
-}
-
-
-/* =========================
-   작은 핸드폰
-========================= */
-
-@media(max-width:380px){
-
-    h1{
-        font-size:26px;
-    }
-
-    .day{
-        font-size:21px;
-    }
-
-    .time{
-        font-size:27px;
-        padding:17px 2px;
-    }
-
-    .rotation-item{
-        min-height:108px;
-    }
-
-    .rotation-item strong{
-        font-size:20px;
-    }
-
-    .rotation-item span{
-        font-size:16px;
-    }
-
-    .place-name{
-        font-size:17px;
-    }
-}
-
-
-/* =========================
-   아주 작은 화면
-========================= */
-
-@media(max-width:330px){
-
-    .rotation{
-        grid-template-columns:1fr;
-    }
-
-    .time{
-        font-size:25px;
-    }
-
-}
-
 </style>
 </head>
 
-
 <body>
-
-<div class="wrap">
-
-
-<!-- =====================================
-     제목
-===================================== -->
-
-<h1>📋 전시대 봉사표</h1>
-
-
-<!-- =====================================
-     요일 버튼
-===================================== -->
-
-<div class="days">
-
-<button
-    class="day wed active"
-    onclick="showDay('wed')">
-
-    수요일
-
-</button>
-
-
-<button
-    class="day sat"
-    onclick="showDay('sat')">
-
-    토요일
-
-</button>
-
-</div>
-
-
-<!-- =====================================
-     봉사 장소
-===================================== -->
-
-<div class="card">
-
-<div class="title">
-📍 봉사 장소 4곳
-</div>
-
-
-<div class="place">
-
-<div class="place-number">
-①
-</div>
-
-<div class="place-name">
-전시대
-</div>
-
-</div>
-
-
-<div class="place">
-
-<div class="place-number">
-②
-</div>
-
-<div class="place-name">
-만득이
-</div>
-
-</div>
-
-
-<div class="place">
-
-<div class="place-number">
-③
-</div>
-
-<div class="place-name">
-면사무소 건너 정류장
-</div>
-
-</div>
-
-
-<div class="place">
-
-<div class="place-number">
-④
-</div>
-
-<div class="place-name">
-면사무소 정류장
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =====================================
-     조원 이름
-===================================== -->
-
-<div class="card">
-
-<div class="title">
-👥 조원 이름 입력
-</div>
-
-
-<!-- 1조 -->
-
-<div class="group">
-
-<div class="group-name g1bg">
-🟨 1조
-</div>
-
-<div class="names">
-
-<input
-    id="g1_1"
-    placeholder="이름">
-
-<input
-    id="g1_2"
-    placeholder="이름">
-
-<input
-    id="g1_3"
-    placeholder="이름">
-
-</div>
-
-</div>
-
-
-<!-- 2조 -->
-
-<div class="group">
-
-<div class="group-name g2bg">
-🟦 2조
-</div>
-
-<div class="names">
-
-<input
-    id="g2_1"
-    placeholder="이름">
-
-<input
-    id="g2_2"
-    placeholder="이름">
-
-<input
-    id="g2_3"
-    placeholder="이름">
-
-</div>
-
-</div>
-
-
-<!-- 3조 -->
-
-<div class="group">
-
-<div class="group-name g3bg">
-🟩 3조
-</div>
-
-<div class="names">
-
-<input
-    id="g3_1"
-    placeholder="이름">
-
-<input
-    id="g3_2"
-    placeholder="이름">
-
-<input
-    id="g3_3"
-    placeholder="이름">
-
-</div>
-
-</div>
-
-
-<!-- 4조 -->
-
-<div class="group">
-
-<div class="group-name g4bg">
-🩷 4조
-</div>
-
-<div class="names">
-
-<input
-    id="g4_1"
-    placeholder="이름">
-
-<input
-    id="g4_2"
-    placeholder="이름">
-
-<input
-    id="g4_3"
-    placeholder="이름">
-
-</div>
-
-</div>
-
-
-<div class="buttons">
-
-<button
-    class="save"
-    onclick="saveData()">
-
-    💾 저장
-
-</button>
-
-
-<button
-    class="reset"
-    onclick="resetData()">
-
-    🔄 초기화
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- =====================================
-     수요일
-===================================== -->
-
-<div id="wed">
-
-<div class="card">
-
-<div class="current">
-🟦 수요일 · 오후 6:00 ~ 8:00
-</div>
-
-<div class="title">
-🔄 15분 단위 로테이션
-</div>
-
-
-<!-- 18:00 ~ 18:15 -->
-
-<div class="time">
-18:00 ~ 18:15
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-</div>
-
-
-<!-- 18:15 ~ 18:30 -->
-
-<div class="time">
-18:15 ~ 18:30
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>전시대</span>
-</div>
-
-</div>
-
-
-<!-- 18:30 ~ 18:45 -->
-
-<div class="time">
-18:30 ~ 18:45
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>만득이</span>
-</div>
-
-</div>
-
-
-<!-- 18:45 ~ 19:00 -->
-
-<div class="time">
-18:45 ~ 19:00
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-</div>
-
-
-<!-- 19:00 ~ 19:15 -->
-
-<div class="time">
-19:00 ~ 19:15
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-</div>
-
-
-<!-- 19:15 ~ 19:30 -->
-
-<div class="time">
-19:15 ~ 19:30
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>전시대</span>
-</div>
-
-</div>
-
-
-<!-- 19:30 ~ 19:45 -->
-
-<div class="time">
-19:30 ~ 19:45
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>만득이</span>
-</div>
-
-</div>
-
-
-<!-- 19:45 ~ 20:00 -->
-
-<div class="time">
-19:45 ~ 20:00
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =====================================
-     토요일
-===================================== -->
-
-<div id="sat" style="display:none;">
-
-<div class="card">
-
-<div class="current">
-🟩 토요일 · 오후 6:00 ~ 8:00
-</div>
-
-<div class="title">
-🔄 15분 단위 로테이션
-</div>
-
-
-<!-- 18:00 -->
-
-<div class="time">
-18:00 ~ 18:15
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-</div>
-
-
-<!-- 18:15 -->
-
-<div class="time">
-18:15 ~ 18:30
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>전시대</span>
-</div>
-
-</div>
-
-
-<!-- 18:30 -->
-
-<div class="time">
-18:30 ~ 18:45
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>만득이</span>
-</div>
-
-</div>
-
-
-<!-- 18:45 -->
-
-<div class="time">
-18:45 ~ 19:00
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-</div>
-
-
-<!-- 19:00 -->
-
-<div class="time">
-19:00 ~ 19:15
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-</div>
-
-
-<!-- 19:15 -->
-
-<div class="time">
-19:15 ~ 19:30
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>전시대</span>
-</div>
-
-</div>
-
-
-<!-- 19:30 -->
-
-<div class="time">
-19:30 ~ 19:45
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>만득이</span>
-</div>
-
-</div>
-
-
-<!-- 19:45 -->
-
-<div class="time">
-19:45 ~ 20:00
-</div>
-
-<div class="rotation">
-
-<div class="rotation-item r1">
-<strong>🟨 1조</strong>
-<span>면사무소 정류장</span>
-</div>
-
-<div class="rotation-item r2">
-<strong>🟦 2조</strong>
-<span>전시대</span>
-</div>
-
-<div class="rotation-item r3">
-<strong>🟩 3조</strong>
-<span>만득이</span>
-</div>
-
-<div class="rotation-item r4">
-<strong>🩷 4조</strong>
-<span>면사무소 건너 정류장</span>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =====================================
-     안내
-===================================== -->
-
-<div class="note">
-
-⏱️ 오후 6시 ~ 8시<br>
-
-15분마다 다음 장소로 이동합니다.<br>
-
-🟨 1조 · 🟦 2조 · 🟩 3조 · 🩷 4조<br>
-
-총 4곳을 순환합니다.
-
-</div>
-
-
-</div>
-
+<header>
+  <h1>오늘의 전시대 순환봉사 배정표</h1>
+  <p>봉사 선택 · 조별 배정 · 개인별 일정</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>① 봉사 종류 선택</h2>
+    <p class="small">참여할 봉사를 선택하세요. 세 가지 중 하나만 선택하거나 여러 개를 선택할 수 있습니다.</p>
+
+    <label class="session">
+      <input type="checkbox" id="wed" checked>
+      <div>
+        <strong>수요일 저녁 봉사</strong>
+        <small>오후 6:00 ~ 8:00</small>
+      </div>
+    </label>
+
+    <label class="session">
+      <input type="checkbox" id="satMorning" checked>
+      <div>
+        <strong>토요일 오전 봉사</strong>
+        <small>오전 10:00 ~ 12:00</small>
+      </div>
+    </label>
+
+    <label class="session">
+      <input type="checkbox" id="satEvening" checked>
+      <div>
+        <strong>토요일 저녁 봉사</strong>
+        <small>오후 6:00 ~ 8:00</small>
+      </div>
+    </label>
+
+    <div class="actions">
+      <button type="button" class="secondary" id="selectAll">세 가지 모두 선택</button>
+      <button type="button" class="secondary" id="selectNone">모두 선택 해제</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>② 참여자 이름과 조 선택</h2>
+    <p class="small">이름을 입력하고 각 참여자의 조를 선택하세요. 이름이 입력되면 입력란에는 실제 이름이 표시됩니다.</p>
+    <div class="people" id="people"></div>
+  </section>
+
+  <section class="card">
+    <h2>③ 공지사항</h2>
+    <textarea id="notice" placeholder="공지사항을 입력하세요.&#10;예: 봉사 시작 5분 전까지 모여 주세요."></textarea>
+  </section>
+
+  <section class="card">
+    <h2>④ 전체 순환봉사 배정표</h2>
+    <div class="notice">
+      <strong>A 전시대:</strong> 영인면사무소 앞<br>
+      <strong>B 전시대:</strong> 농협 하나로마트 앞<br>
+      <strong>교대 간격:</strong> 15분<br>
+      <strong>봉사 시간:</strong> 각 일정 2시간
+    </div>
+    <div id="schedule"></div>
+  </section>
+
+  <section class="card">
+    <h2>⑤ 개인별 일정</h2>
+    <label for="personSelect">참여자 선택</label>
+    <select id="personSelect">
+      <option value="">참여자를 선택하세요</option>
+    </select>
+    <div id="personalSchedule"></div>
+  </section>
+
+  <section class="card no-print">
+    <h2>⑥ 저장 및 공유</h2>
+    <div class="actions">
+      <button type="button" id="saveBtn">내용 저장</button>
+      <button type="button" id="shareBtn">공유 링크 만들기</button>
+      <button type="button" class="dark" id="printBtn">배정표 인쇄</button>
+    </div>
+    <div id="shareArea" class="hidden">
+      <p class="small">아래 링크를 복사하여 카카오톡에 보내세요.</p>
+      <input type="text" id="shareUrl" readonly>
+      <button type="button" id="copyBtn" style="width:100%;margin-top:8px">링크 복사</button>
+    </div>
+    <p id="message" class="small" aria-live="polite"></p>
+  </section>
+</main>
 
 <script>
+(function(){
+"use strict";
 
-/* =========================
-   이름 저장
-========================= */
+const STORAGE_KEY = "displayStandVolunteerAppV4";
 
-function saveData(){
+const peopleEl = document.getElementById("people");
+const scheduleEl = document.getElementById("schedule");
+const personSelect = document.getElementById("personSelect");
+const noticeEl = document.getElementById("notice");
+const messageEl = document.getElementById("message");
 
-    const inputs =
-        document.querySelectorAll("input");
+let people = Array.from({length:12}, function(){
+  return {name:"",group:"1"};
+});
 
-    inputs.forEach(function(input){
+let selected = {
+  wed:true,
+  satMorning:true,
+  satEvening:true
+};
 
-        localStorage.setItem(
-            input.id,
-            input.value
-        );
+const sessions = [
+  {key:"wed",title:"수요일 저녁 봉사",start:"18:00"},
+  {key:"satMorning",title:"토요일 오전 봉사",start:"10:00"},
+  {key:"satEvening",title:"토요일 저녁 봉사",start:"18:00"}
+];
 
-    });
-
-    alert("조원 이름이 저장되었습니다.");
-
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,function(c){
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[c];
+  });
 }
 
-
-/* =========================
-   저장된 이름 불러오기
-========================= */
-
-function loadData(){
-
-    const inputs =
-        document.querySelectorAll("input");
-
-    inputs.forEach(function(input){
-
-        const value =
-            localStorage.getItem(input.id);
-
-        if(value !== null){
-
-            input.value = value;
-
-        }
-
-    });
-
+function readControls(){
+  selected.wed = document.getElementById("wed").checked;
+  selected.satMorning = document.getElementById("satMorning").checked;
+  selected.satEvening = document.getElementById("satEvening").checked;
 }
 
+function getData(){
+  readControls();
+  return {
+    version:4,
+    people:people.map(function(p){
+      return {name:p.name,group:p.group};
+    }),
+    selected:{
+      wed:selected.wed,
+      satMorning:selected.satMorning,
+      satEvening:selected.satEvening
+    },
+    notice:noticeEl.value
+  };
+}
 
-/* =========================
-   이름 초기화
-========================= */
+function loadData(data){
+  if(!data || typeof data!=="object") return;
 
-function resetData(){
+  if(Array.isArray(data.people)){
+    people = Array.from({length:12},function(_,i){
+      const p = data.people[i] || {};
+      const group = String(p.group || "1");
+      return {
+        name:String(p.name || ""),
+        group:["1","2","3","4"].includes(group) ? group : "1"
+      };
+    });
+  }
 
-    if(
-        !confirm(
-            "입력한 조원 이름을 모두 지울까요?"
-        )
-    ){
+  if(data.selected && typeof data.selected==="object"){
+    selected = {
+      wed:data.selected.wed !== false,
+      satMorning:data.selected.satMorning !== false,
+      satEvening:data.selected.satEvening !== false
+    };
+  }
 
-        return;
+  noticeEl.value = String(data.notice || "");
+}
 
+function loadInitialData(){
+  try{
+    const params = new URLSearchParams(window.location.search);
+    const encoded = params.get("data");
+
+    if(encoded){
+      const json = decodeURIComponent(escape(atob(encoded)));
+      loadData(JSON.parse(json));
+      return;
+    }
+  }catch(error){
+    // 잘못된 공유 데이터는 아래의 저장 데이터로 대체합니다.
+  }
+
+  try{
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if(saved) loadData(JSON.parse(saved));
+  }catch(error){}
+}
+
+function saveQuietly(){
+  try{
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(getData()));
+  }catch(error){}
+}
+
+function renderPeople(){
+  peopleEl.innerHTML = "";
+
+  people.forEach(function(p,i){
+    const box = document.createElement("div");
+    box.className = "person";
+
+    const nameInput = document.createElement("input");
+    nameInput.type = "text";
+    nameInput.maxLength = 30;
+    nameInput.placeholder = "이름 입력";
+    nameInput.setAttribute("aria-label","참여자 "+(i+1)+" 이름");
+    nameInput.value = p.name;
+
+    nameInput.addEventListener("input",function(){
+      people[i].name = nameInput.value;
+      renderPersonOptions();
+      renderSchedule();
+      renderPersonalSchedule();
+      saveQuietly();
+    });
+
+    const groupSelect = document.createElement("select");
+    groupSelect.setAttribute("aria-label","참여자 "+(i+1)+" 조 선택");
+
+    groupSelect.innerHTML =
+      '<option value="1">1조</option>'+
+      '<option value="2">2조</option>'+
+      '<option value="3">3조</option>'+
+      '<option value="4">4조</option>';
+
+    groupSelect.value = p.group;
+
+    groupSelect.addEventListener("change",function(){
+      people[i].group = groupSelect.value;
+      renderPersonOptions();
+      renderSchedule();
+      renderPersonalSchedule();
+      saveQuietly();
+    });
+
+    box.appendChild(nameInput);
+    box.appendChild(groupSelect);
+    peopleEl.appendChild(box);
+  });
+}
+
+function renderPersonOptions(){
+  const oldValue = personSelect.value;
+  personSelect.innerHTML = '<option value="">참여자를 선택하세요</option>';
+
+  people.forEach(function(p,i){
+    if(!p.name.trim()) return;
+
+    const option = document.createElement("option");
+    option.value = String(i);
+    option.textContent = p.name.trim()+" ("+p.group+"조)";
+    personSelect.appendChild(option);
+  });
+
+  if(Array.from(personSelect.options).some(function(o){
+    return o.value===oldValue;
+  })){
+    personSelect.value = oldValue;
+  }
+}
+
+function roleFor(group,step){
+  /*
+    시작 배정:
+    1조 A 전시대
+    2조 가두봉사
+    3조 B 전시대
+    4조 B 전시대
+
+    이후 15분마다 다음 배정표로 순환합니다.
+  */
+  const rotation = [
+    ["A","street","B","B"],
+    ["street","B","rest","A"],
+    ["B","rest","A","street"],
+    ["rest","A","street","B"]
+  ];
+
+  return rotation[step%rotation.length][group-1];
+}
+
+function roleName(role){
+  if(role==="A") return "A 전시대";
+  if(role==="B") return "B 전시대";
+  if(role==="street") return "가두봉사";
+  return "휴식";
+}
+
+function timeAt(start,step){
+  const parts = start.split(":");
+  const total = Number(parts[0])*60 + Number(parts[1]) + step*15;
+  const h = String(Math.floor(total/60)%24).padStart(2,"0");
+  const m = String(total%60).padStart(2,"0");
+  return h+":"+m;
+}
+
+function roleClass(role){
+  if(role==="street") return "street";
+  if(role==="rest") return "rest";
+  return "";
+}
+
+function groupNames(group){
+  const list = people.filter(function(p){
+    return Number(p.group)===group && p.name.trim();
+  });
+
+  if(!list.length) return "이름 미입력";
+
+  return list.map(function(p){
+    return escapeHTML(p.name.trim());
+  }).join(", ");
+}
+
+function renderSchedule(){
+  readControls();
+  scheduleEl.innerHTML = "";
+
+  const chosen = sessions.filter(function(s){
+    return selected[s.key];
+  });
+
+  if(chosen.length===0){
+    scheduleEl.innerHTML =
+      '<p class="small">선택된 봉사가 없습니다. 위에서 봉사 종류를 선택해 주세요.</p>';
+    return;
+  }
+
+  chosen.forEach(function(session){
+    const section = document.createElement("section");
+    const heading = document.createElement("h3");
+    heading.textContent = session.title+" ("+session.start+" 시작)";
+    section.appendChild(heading);
+
+    let html =
+      '<div class="table-wrap"><table><thead><tr>'+
+      '<th>시간</th><th>1조</th><th>2조</th><th>3조</th><th>4조</th>'+
+      '</tr></thead><tbody>';
+
+    for(let step=0;step<8;step++){
+      html += "<tr><td>"+timeAt(session.start,step)+
+        "<br>~"+timeAt(session.start,step+1)+"</td>";
+
+      for(let group=1;group<=4;group++){
+        const role = roleFor(group,step);
+        html += '<td><span class="tag '+roleClass(role)+'">'+
+          roleName(role)+'</span><span class="member-names">'+
+          groupNames(group)+'</span></td>';
+      }
+
+      html += "</tr>";
     }
 
-    const inputs =
-        document.querySelectorAll("input");
-
-    inputs.forEach(function(input){
-
-        input.value = "";
-
-        localStorage.removeItem(
-            input.id
-        );
-
-    });
-
+    html += "</tbody></table></div>";
+    section.insertAdjacentHTML("beforeend",html);
+    scheduleEl.appendChild(section);
+  });
 }
 
+function renderPersonalSchedule(){
+  readControls();
 
-/* =========================
-   수요일 / 토요일 전환
-========================= */
+  const output = document.getElementById("personalSchedule");
+  const value = personSelect.value;
 
-function showDay(day){
+  if(value===""){
+    output.innerHTML = "";
+    return;
+  }
 
-    document.getElementById("wed")
-        .style.display =
-        day === "wed"
-        ? "block"
-        : "none";
+  const p = people[Number(value)];
+  if(!p){
+    output.innerHTML = "";
+    return;
+  }
 
+  const chosen = sessions.filter(function(s){
+    return selected[s.key];
+  });
 
-    document.getElementById("sat")
-        .style.display =
-        day === "sat"
-        ? "block"
-        : "none";
+  let html = "<h3>"+escapeHTML(p.name)+" ("+p.group+"조)</h3>";
 
+  if(chosen.length===0){
+    output.innerHTML = html+
+      '<p class="small">선택된 봉사가 없습니다.</p>';
+    return;
+  }
 
-    document.querySelector(".wed")
-        .classList.toggle(
-            "active",
-            day === "wed"
-        );
+  chosen.forEach(function(session){
+    html += '<div class="person-schedule"><strong>'+
+      session.title+" ("+session.start+" 시작)</strong><br>";
 
+    for(let step=0;step<8;step++){
+      const role = roleFor(Number(p.group),step);
+      html += '<span class="small">'+
+        timeAt(session.start,step)+"~"+
+        timeAt(session.start,step+1)+" : "+
+        roleName(role)+'</span><br>';
+    }
 
-    document.querySelector(".sat")
-        .classList.toggle(
-            "active",
-            day === "sat"
-        );
+    html += "</div>";
+  });
 
+  output.innerHTML = html;
 }
 
+function refresh(){
+  renderSchedule();
+  renderPersonalSchedule();
+  saveQuietly();
+}
 
-/* =========================
-   실행
-========================= */
+["wed","satMorning","satEvening"].forEach(function(id){
+  document.getElementById(id).addEventListener("change",refresh);
+});
 
-loadData();
+document.getElementById("selectAll").addEventListener("click",function(){
+  document.getElementById("wed").checked = true;
+  document.getElementById("satMorning").checked = true;
+  document.getElementById("satEvening").checked = true;
+  refresh();
+});
 
+document.getElementById("selectNone").addEventListener("click",function(){
+  document.getElementById("wed").checked = false;
+  document.getElementById("satMorning").checked = false;
+  document.getElementById("satEvening").checked = false;
+  refresh();
+});
+
+noticeEl.addEventListener("input",saveQuietly);
+personSelect.addEventListener("change",renderPersonalSchedule);
+
+document.getElementById("saveBtn").addEventListener("click",function(){
+  try{
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(getData()));
+    messageEl.textContent = "저장했습니다. 이 브라우저에서 다시 열어도 내용이 유지됩니다.";
+  }catch(error){
+    messageEl.textContent = "저장에 실패했습니다. 브라우저 설정을 확인해 주세요.";
+  }
+});
+
+document.getElementById("shareBtn").addEventListener("click",function(){
+  try{
+    const json = JSON.stringify(getData());
+    const encoded = btoa(unescape(encodeURIComponent(json)));
+    const url = window.location.href.split("?")[0]+"?data="+encodeURIComponent(encoded);
+
+    document.getElementById("shareUrl").value = url;
+    document.getElementById("shareArea").classList.remove("hidden");
+    messageEl.textContent = "공유 링크를 만들었습니다. 다른 휴대폰에서 열어 확인해 주세요.";
+  }catch(error){
+    messageEl.textContent = "공유 링크를 만들지 못했습니다.";
+  }
+});
+
+document.getElementById("copyBtn").addEventListener("click",async function(){
+  const field = document.getElementById("shareUrl");
+
+  try{
+    await navigator.clipboard.writeText(field.value);
+    messageEl.textContent = "공유 링크를 복사했습니다. 카카오톡에 붙여넣으세요.";
+  }catch(error){
+    field.focus();
+    field.select();
+
+    try{
+      const copied = document.execCommand("copy");
+      messageEl.textContent = copied
+        ? "공유 링크를 복사했습니다."
+        : "링크를 선택했습니다. 복사해 주세요.";
+    }catch(e){
+      messageEl.textContent = "링크를 길게 눌러 복사해 주세요.";
+    }
+  }
+});
+
+document.getElementById("printBtn").addEventListener("click",function(){
+  window.print();
+});
+
+loadInitialData();
+
+document.getElementById("wed").checked = selected.wed;
+document.getElementById("satMorning").checked = selected.satMorning;
+document.getElementById("satEvening").checked = selected.satEvening;
+
+renderPeople();
+renderPersonOptions();
+renderSchedule();
+renderPersonalSchedule();
+
+})();
 </script>
-
 </body>
 </html>
