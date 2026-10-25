@@ -37,7 +37,6 @@ textarea{width:100%;min-height:75px;resize:vertical}
 .session strong{display:block;font-size:10pt}
 .session small{display:block;margin-top:3px;font-size:10pt;color:#687386}
 button{border:0;border-radius:8px;padding:10px;background:#246bfd;color:white;cursor:pointer}
-.secondary{background:#e8eef9;color:#204a91}
 .dark{background:#334155;color:white}
 .actions{display:flex;flex-wrap:wrap;gap:7px}
 .actions button{flex:1;min-width:110px}
@@ -79,26 +78,17 @@ th{background:#edf3ff}
 
     <label class="session">
       <input type="checkbox" id="wed" checked>
-      <div>
-        <strong>수요일 저녁 봉사</strong>
-        <small>오후 6:00 ~ 8:00</small>
-      </div>
+      <div><strong>수요일 저녁 봉사</strong><small>오후 6:00 ~ 8:00</small></div>
     </label>
 
     <label class="session">
       <input type="checkbox" id="satMorning" checked>
-      <div>
-        <strong>토요일 오전 봉사</strong>
-        <small>오전 10:00 ~ 12:00</small>
-      </div>
+      <div><strong>토요일 오전 봉사</strong><small>오전 10:00 ~ 12:00</small></div>
     </label>
 
     <label class="session">
       <input type="checkbox" id="satEvening" checked>
-      <div>
-        <strong>토요일 저녁 봉사</strong>
-        <small>오후 6:00 ~ 8:00</small>
-      </div>
+      <div><strong>토요일 저녁 봉사</strong><small>오후 6:00 ~ 8:00</small></div>
     </label>
   </section>
 
@@ -130,7 +120,6 @@ th{background:#edf3ff}
       <button type="button" id="shareBtn">공유 링크 만들기</button>
       <button type="button" class="dark" id="printBtn">배정표 인쇄</button>
     </div>
-
     <div id="shareArea" class="hidden">
       <h3 style="margin-top:12px">오늘의 전시대 순환봉사 배정표</h3>
       <p class="small">아래 링크를 복사하여 공유하세요.</p>
@@ -268,7 +257,7 @@ function renderPeople(){
     });
 
     const groupSelect = document.createElement("select");
-    groupSelect.setAttribute("aria-label","참여자 "+(i+1)+" 조 선택);
+    groupSelect.setAttribute("aria-label","참여자 "+(i+1)+" 조 선택");
     groupSelect.innerHTML=
       '<option value="1">1조</option>'+
       '<option value="2">2조</option>'+
