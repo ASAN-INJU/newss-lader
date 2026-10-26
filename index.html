@@ -317,9 +317,9 @@ function groupNames(group){
 
   if(!names.length) return "이름 미입력";
 
-  return names.map(function(p){
-    return escapeHTML(p.name.trim());
-  }).join(", ");
+ return names.map(function(p){
+  return escapeHTML(p.name.trim());
+}).join("<br>");
 }
 
 function renderSchedule(){
