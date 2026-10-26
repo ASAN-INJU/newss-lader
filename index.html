@@ -216,15 +216,31 @@ function loadData(data){
 }
 
 function loadInitialData(){
-  try{
-    const params = new URLSearchParams(location.search);
-    const encoded = params.get("data");
-    if(encoded){
-      const json = decodeURIComponent(escape(atob(encoded)));
-      loadData(JSON.parse(json));
+  const params = new URLSearchParams(window.location.search);
+  const encoded = params.get("data");
+
+  if(encoded){
+    try{
+      let base64 = encoded.replace(/ /g,"+");
+      base64 = base64.replace(/-/g,"+").replace(/_/g,"/");
+      while(base64.length % 4) base64 += "=";
+
+      const binary = atob(base64);
+      const bytes = Uint8Array.from(binary,function(c){
+        return c.charCodeAt(0);
+      });
+
+      const json = new TextDecoder("utf-8").decode(bytes);
+      const data = JSON.parse(json);
+
+      loadData(data);
+      return;
+    }catch(e){
+      messageEl.textContent =
+        "공유 링크의 이름 정보를 읽지 못했습니다. 새 링크를 만들어 주세요.";
       return;
     }
-  }catch(e){}
+  }
 
   try{
     const saved = localStorage.getItem(STORAGE_KEY);
